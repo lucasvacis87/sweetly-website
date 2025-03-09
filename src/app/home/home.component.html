@@ -1,0 +1,100 @@
+
+<div class="home-container">
+
+  <section class="home-container-main-banner">
+    <div class="text-container">
+        <div class="title-container">
+          <h1>Sweetly</h1>
+        </div>
+      <h2>Haz que tus momentos <br> sean mas tiernos y llenos de amor</h2>
+      <h3>con nuestros Amigurumis</h3>
+    </div>
+
+    <img src="portada1.png" alt="Amigurumis Sweetly">
+  </section>
+
+  <section class="secondary-banner">
+    <div class="text-container">
+      <h2>¿Qué es un amigurumi?</h2>
+      <p>Los amigurumis son muñecos tejidos a crochet, de origen japonés. <br> Pequeños, tiernos y muy coloridos, <br>los Amigurumis son ideales para regalar a niños y adultos!</p>
+    </div>
+  </section>
+
+  <section class="elegi-favorito">
+    <div class="imagenes">
+      <img src="favorito-1.jpeg" alt="Amigurumi Tacky">
+      <img src="portada.jpeg" alt="Amigurumi Niña">
+      <img src="favorito-2.jpeg" alt="Amigurumi Baby Yoda">
+    </div>
+    <div class="text-container">
+      <h2 style="padding: 20px; text-align: left;">Elegí tu nuevo favorito</h2>
+      <p style="text-align: left;">y hace tu pedido 100% personalizado</p>
+      <button mat-button routerLink="/productos">Ver mas Diseños</button>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="cards">
+      <mat-card appearance="outlined">
+        <img src="entregas.png" alt="">
+        <p>Envios a todo el pais</p>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <img src="corazon.png" alt="">
+        <p>Unite a los 1.512 <br> que ya tienen el suyo</p>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <img src="peluche.png" alt="">
+        <p>Hacemos tu personaje favorito a pedido!</p>
+      </mat-card>
+
+    </div>
+  </section>
+
+  <section class="contacto">
+    <div class="text-container">
+      <h2>¿Querés hacer un pedido?</h2>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <!-- Campo Nombre -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ingresa tu nombre">
+          <mat-error *ngIf="contactForm.get('nombre')?.hasError('required')">
+            El nombre es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Ingresa tu email">
+          <!-- Si el email no cumple con el patrón, muestra error -->
+          <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+            El email es requerido.
+          </mat-error>
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+            El email no es válido.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Campo Mensaje -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mensaje</mat-label>
+          <textarea matInput formControlName="mensaje" placeholder="Escribe tu mensaje" rows="4"></textarea>
+          <mat-error *ngIf="contactForm.get('mensaje')?.hasError('required')">
+            El mensaje es requerido.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Botón Enviar -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">
+          Enviar
+        </button>
+      </form>
+
+    </div>
+  </section>
+</div>

@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importar la fuente Red Rose desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;600&display=swap');
+
+/* Variables de colores en tonos pastel rosa */
+:root {
+  --primary-color: #ffb3c6; /* Rosa pastel principal */
+  --secondary-color: #ffccd5; /* Rosa claro secundario */
+  --background-color: #fff0f3; /* Fondo rosado suave */
+  --text-color: #333333; /* Texto gris oscuro para contraste */
+  --accent-color: #ff99ac; /* Rosa vibrante para detalles */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Sombras suaves */
+
+  /* Tipografía */
+  --font-family: 'Fredoka', sans-serif, 'Red Rose', light;
+  --font-size-base: 16px;
+  --font-size-title: 65px;
+  --font-size-large: 75px;
+  --font-size-medium: 40px;
+  --font-size-small: 14px;
+
+  /* Espaciado */
+  --padding-sm: 8px;
+  --padding-md: 16px;
+  --padding-lg: 24px;
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+
+  /* Bordes */
+  --border-radius: 12px;
+}
+
+/* Aplicación global de la tipografía */
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: var(--font-size-title);
+  color: var(--text-color);
+  margin: var(--margin-md);
+}
+
+h2 {
+  font-size: var(--font-size-large);
+  color: var(--accent-color);
+  padding: 10px;
+}
+
+h3 {
+  font-size: var(--font-size-base);
+  color: var(--text-color);
+  padding: var(--padding-sm);
+  margin: var(--margin-sm);
+}
+
+p {
+  color: var(--text-color);
+}
