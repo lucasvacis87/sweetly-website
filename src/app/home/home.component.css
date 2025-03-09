@@ -13,6 +13,7 @@ section{
 h2 {
     font-size: var(--font-size-large);
     color: var(--accent-color);
+    max-width: 900px;
     padding: 10px;
     margin: 10px;
 }
