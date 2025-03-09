@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/s',
+  basePath: '/sweetly-website',
   supportedLocales: {
   "en-US": ""
 },
