@@ -1,0 +1,8 @@
+{
+  "routes": {
+    "/s": {},
+    "/s/contacto": {},
+    "/s/productos": {},
+    "/s/redes": {}
+  }
+}
