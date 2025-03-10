@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-around;
     background-color: #f5f5f5;
-
 }
 
 section{
@@ -17,7 +16,6 @@ h2 {
     padding: 10px;
     margin: 10px;
 }
-
 
 .text-container {
     display: flex;
@@ -36,18 +34,17 @@ img {
     border-radius: 50%;
     object-fit: cover;
     align-self: center;
-
 }
 
 .elegi-favorito {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color:white;
 
     .imagenes {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       padding: 20px;
 

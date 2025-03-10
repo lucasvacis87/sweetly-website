@@ -1,5 +1,6 @@
 /* Importar la fuente Red Rose desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;600&display=swap');
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 /* Variables de colores en tonos pastel rosa */
 :root {

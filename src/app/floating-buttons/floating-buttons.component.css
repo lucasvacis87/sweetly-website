@@ -1,0 +1,44 @@
+.floating-buttons-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* Ajusta según necesites separarlos más o menos */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo general para los botones flotantes */
+.floating-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* WhatsApp: verde */
+.whatsapp {
+  background-color: #25d366;
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* Instagram: degradado */
+.instagram {
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%,
+    #fd5949 45%, #d6249f 60%,
+    #285AEB 90%);
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
