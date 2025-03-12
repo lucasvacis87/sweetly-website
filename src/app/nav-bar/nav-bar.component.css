@@ -1,6 +1,7 @@
 /* Barra de navegación */
 .nav-bar {
-  position: relative;      /* Para que los elementos absolutos dentro se posicionen en relación a la barra */
+  position: sticky;      /* Cambiado a sticky para que se mantenga visible al hacer scroll */
+  top: 0;                /* Se adhiere a la parte superior de la página */
   margin: 0;
   padding: 0;
   display: flex;
@@ -8,7 +9,15 @@
   justify-content: space-between;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 2000;           /* Mayor que el del menú móvil */
+  z-index: 2000;         /* Mayor que el del menú móvil */
+  width: 100%;           /* Asegura que la barra de navegación ocupe el 100% del ancho */
+}
+
+i {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;            /* Oculto por defecto */
+  padding: 15px;
 }
 
 /* Logo */
@@ -45,6 +54,9 @@ a {
 /* Estilos para dispositivos móviles */
 @media screen and (max-width: 768px) {
   /* Mostrar el icono de la hamburguesa */
+  i {
+    display: block;
+  }
   .burger {
     display: block;
     cursor: pointer;

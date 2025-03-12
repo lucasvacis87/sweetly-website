@@ -1,0 +1,36 @@
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Altura fija para la galería */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;   /* Ocupa toda la altura del contenedor */
+  border-radius: 5px;
+  object-fit: cover; /* Para recortar la imagen y mantener la proporción */
+}
+
+.nav-button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}

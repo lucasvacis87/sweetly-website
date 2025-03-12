@@ -8,10 +8,10 @@
         <i [ngClass]="isMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
       </div>
       <div class="nav-bar-links" [class.is-open]="isMenuOpen">
-        <a routerLink="">Home</a>
-        <a routerLink="">Productos</a>
-        <a routerLink="">Como lo hacemos</a>
-        <a routerLink="">Contacto</a>
+        <a routerLink="/" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" (click)="closeMenu()">Productos</a>
+        <a routerLink="/" (click)="closeMenu()">Como lo hacemos</a>
+        <a routerLink="/contacto" (click)="closeMenu()">Contacto</a>
       </div>
     </div>
   </div>

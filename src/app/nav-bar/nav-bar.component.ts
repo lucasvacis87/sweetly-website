@@ -26,4 +26,9 @@ export class NavBarComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
+  // Método para cerrar el menú
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
 }
