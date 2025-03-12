@@ -18,12 +18,12 @@ import { RouterModule } from '@angular/router';
     MatMenuModule
   ],
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  isManuOpen: boolean = false;
+  isMenuOpen: boolean = false;
 
   toggleMenu() {
-    this.isManuOpen = !this.isManuOpen;
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

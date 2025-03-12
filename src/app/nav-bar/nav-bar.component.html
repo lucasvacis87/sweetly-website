@@ -1,11 +1,18 @@
 <nav class="nav-bar">
-  <ul>
-  <img src="logo.jpeg" alt="" style="height: 50px; border-radius: 50%;">
-  <li>
-    <a href=""routerLink=""></a>
-    <a href=""routerLink=""></a>
-    <a href=""routerLink=""></a>
-    <a href=""routerLink=""></a>
-  </li>
-  </ul>
+  <div class="nav-bar-items">
+    <div class="logo">
+      <img src="logo.jpeg" alt="logo" />
+    </div>
+    <div class="nav-bar-buttons">
+      <div class="burger" (click)="toggleMenu()">
+        <i [ngClass]="isMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
+      </div>
+      <div class="nav-bar-links" [class.is-open]="isMenuOpen">
+        <a routerLink="">Home</a>
+        <a routerLink="">Productos</a>
+        <a routerLink="">Como lo hacemos</a>
+        <a routerLink="">Contacto</a>
+      </div>
+    </div>
+  </div>
 </nav>

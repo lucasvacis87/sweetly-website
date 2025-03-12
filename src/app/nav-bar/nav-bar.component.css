@@ -1,8 +1,85 @@
-.logo {
-  height: 50px;
+/* Barra de navegación */
+.nav-bar {
+  position: relative;      /* Para que los elementos absolutos dentro se posicionen en relación a la barra */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2000;           /* Mayor que el del menú móvil */
+}
+
+/* Logo */
+.logo img {
+  object-fit: cover;
+  margin: 10px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 
-.flex-spacer {
-  flex: 1 1 auto;
+/* Contenedor de elementos */
+.nav-bar-items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.nav-bar-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos generales para los enlaces */
+a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  display: inline-block;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  /* Mostrar el icono de la hamburguesa */
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Configuración inicial del menú móvil */
+  .nav-bar-links {
+    display: flex;            /* Siempre se muestra como flex para poder animar */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;                /* Se posiciona justo debajo de la nav-bar */
+    left: 0;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;            /* Debe quedar por debajo de la nav-bar */
+
+    /* Propiedades para la animación */
+    opacity: 0;               /* Empieza oculto */
+    transform: translateY(-20px); /* Levantado un poco hacia arriba */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;     /* Evita interacciones cuando está oculto */
+  }
+
+  /* Estado cuando el menú está abierto */
+  .nav-bar-links.is-open {
+    opacity: 1;               /* Se vuelve visible */
+    transform: translateY(0); /* Vuelve a su posición normal */
+    pointer-events: auto;     /* Permite interacciones */
+  }
+
+  .nav-bar-links a {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: block;
+  }
 }
