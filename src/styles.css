@@ -8,14 +8,15 @@
   --secondary-color: #ffccd5; /* Rosa claro secundario */
   --background-color: #fff0f3; /* Fondo rosado suave */
   --text-color: #333333; /* Texto gris oscuro para contraste */
+  --text-light-color: #696767; /* Texto blanco para contraste */
   --accent-color: #ff99ac; /* Rosa vibrante para detalles */
   --shadow-color: rgba(0, 0, 0, 0.1); /* Sombras suaves */
 
   /* Tipografía */
   --font-family: 'Fredoka', sans-serif, 'Red Rose', light;
   --font-size-base: 16px;
-  --font-size-title: 65px;
-  --font-size-large: 75px;
+  --font-size-title: 55px;
+  --font-size-large: 65px;
   --font-size-medium: 40px;
   --font-size-small: 14px;
 
@@ -48,6 +49,8 @@ h2 {
   font-size: var(--font-size-large);
   color: var(--accent-color);
   padding: 10px;
+  word-wrap: break-word; /* Asegura que el texto se ajuste al contenedor */
+  box-sizing: border-box; /* Incluye el padding en el tamaño total del elemento */
 }
 
 h3 {

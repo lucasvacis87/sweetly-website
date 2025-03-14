@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ContactoComponent } from "../contacto/contacto.component";
+import { RouterModule } from '@angular/router';
+import { HomeGalleryComponent } from "../home-gallery/home-gallery.component";
 
 
 @Component({
@@ -16,8 +19,11 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    CommonModule
-  ],
+    CommonModule,
+    ContactoComponent,
+    RouterModule,
+    HomeGalleryComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

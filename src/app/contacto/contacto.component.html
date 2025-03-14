@@ -1,12 +1,14 @@
 <mat-card>
-  <h2>Contactanos</h2>
+  <mat-card-title>Contáctanos</mat-card-title>
+  <mat-card-subtitle>Estamos aquí para ayudarte, envianos los diseños, modelos o personajes que estas buscando y te ayudaremos a encontrarlos.</mat-card-subtitle>
+
   <mat-card-content>
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <!-- Campo Nombre -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" placeholder="Ingresa tu nombre">
-        <mat-error *ngIf="contactForm.get('nombre')?.hasError('required')">
+        <mat-error *ngIf="contactForm.get('nombre')?.hasError('required') && contactForm.get('nombre')?.touched">
           El nombre es requerido.
         </mat-error>
       </mat-form-field>
@@ -15,10 +17,10 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" placeholder="Ingresa tu email">
-        <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+        <mat-error *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched">
           El email es requerido.
         </mat-error>
-        <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+        <mat-error *ngIf="contactForm.get('email')?.hasError('email') && contactForm.get('email')?.touched">
           El email no es válido.
         </mat-error>
       </mat-form-field>
@@ -27,10 +29,28 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Mensaje</mat-label>
         <textarea matInput formControlName="mensaje" placeholder="Escribe tu mensaje" rows="4"></textarea>
-        <mat-error *ngIf="contactForm.get('mensaje')?.hasError('required')">
+        <mat-error *ngIf="contactForm.get('mensaje')?.hasError('required') && contactForm.get('mensaje')?.touched">
           El mensaje es requerido.
         </mat-error>
       </mat-form-field>
+
+      <!-- Seleccionar Múltiples Archivos -->
+      <div class="file-input-container full-width">
+        <!-- Botón Material para disparar el input oculto -->
+        <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">
+          Seleccionar archivos
+        </button>
+        <!-- Input oculto con atributo multiple -->
+        <input #fileInput type="file" accept="image/*" multiple (change)="onFileChange($event)" hidden>
+
+        <!-- Mostrar archivos seleccionados con opción para eliminar -->
+        <div *ngIf="selectedFiles.length" class="selected-files">
+          <div *ngFor="let file of selectedFiles; let i = index" class="selected-file">
+            <span class="file-name">{{ file.name }}</span>
+            <button type="button" mat-button color="warn" (click)="removeFile(i)">Eliminar</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Botón Enviar -->
       <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">

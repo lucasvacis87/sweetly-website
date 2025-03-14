@@ -2,52 +2,67 @@
   <!-- Banner de presentación -->
   <section class="productos-banner">
     <div class="text-container">
-      <h1>Nuestros Productos</h1>
-      <p>Descubre nuestros diseños únicos y personalizados de amigurumis.</p>
+      <h1>Catálogo de Amigurumis</h1>
+      <p>Descubre nuestro catálogo de amigurumis y sets personalizados.</p>
     </div>
   </section>
 
+  <!-- Tabs para elegir entre "Productos" y "Sets" -->
+  <mat-tab-group>
+    <!-- Tab de Productos -->
+    <mat-tab label="Productos">
+      <section class="productos-grid">
+        <mat-card appearance="outlined" *ngFor="let product of products">
 
+          <app-product-gallery [images]="product.images"></app-product-gallery>
+          <mat-card-title>{{ product.name }}</mat-card-title>
 
-  <!-- Cuadrícula de productos -->
-  <section class="productos-grid">
-    <div class="product-card" *ngFor="let product of products">
-      <mat-card appearance="outlined">
-        <!-- Se utiliza la galería en lugar de una imagen fija -->
-        <app-product-gallery [images]="product.images"></app-product-gallery>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-content>
-          <p>{{ product.description }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary" [routerLink]="['/producto', product.id]">Ver Detalles</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </section>
+          <mat-card-content>
+            <p>{{ product.description }}</p>
+          </mat-card-content>
 
-  <section class="productos-grid sets">
-    <h1>Sets personalizados</h1>
-    <div class="product-card" *ngFor="let set of sets">
-      <mat-card appearance="outlined">
-        <app-product-gallery [images]="set.images"></app-product-gallery>
-        <mat-card-title>{{ set.name }}</mat-card-title>
-        <mat-card-content>
-          <p>{{ set.description }}</p>
-          <p> {{ set.unidades }} (Incluye unidad tamaño grande)</p>
-          <p> ${{ set.precio }} </p>
-        </mat-card-content>
-        <mat-card-actions>
+          <mat-card-content>
+            <p> ${{ product.precio }}</p>
+          </mat-card-content>
 
-          <button mat-button color="primary" [routerLink]="['/contacto', set.id]">Consultar</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </section>
+          <mat-card-actions>
+            <button mat-button color="accent" (click)="addToCart(product.id)">Agregar al carrito</button>
+          </mat-card-actions>
 
+        </mat-card>
+      </section>
+    </mat-tab>
+
+    <!-- Tab de Sets -->
+    <mat-tab label="Sets Personalizados">
+      <section class="productos-grid sets">
+        <mat-card appearance="outlined" *ngFor="let set of sets">
+
+          <app-product-gallery [images]="set.images"></app-product-gallery>
+          <mat-card-title>{{ set.name }}</mat-card-title>
+
+          <mat-card-content>
+            <p>{{ set.description }}</p>
+          </mat-card-content>
+
+          <mat-card-content>
+            <p>Precio: ${{ set.precio }}</p>
+            <p>Unidades: {{ set.unidades }}</p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-button color="accent" (click)="addToCart(set.id)">Consultar</button>
+          </mat-card-actions>
+
+        </mat-card>
+      </section>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Sección final “No encuentras tu Amigurumi?” -->
   <section class="productos-banner">
-    <h3>No encontras tu Amigurumi?</h3>
-    <p>Si no encontras el amigurumi que buscas, no dudes en contactarnos para realizar un pedido personalizado.</p>
+    <h3>¿No encuentras tu Amigurumi?</h3>
+    <p>Si no lo ves en nuestro catálogo, contáctanos para realizar un pedido personalizado.</p>
     <button mat-raised-button color="primary" [routerLink]="['/contacto']">Contactar</button>
   </section>
 </div>

@@ -6,46 +6,73 @@
         </div>
       <h2>Haz que tus momentos <br> sean mas tiernos y llenos de amor</h2>
       <h3 style="font-size: 24px;">con nuestros Amigurumis</h3>
+      <button mat-button [routerLink]="['/productos']">
+        ¡Descubre tus amigurumis!
+      </button>
     </div>
 
     <img src="portada1.png" alt="Amigurumis Sweetly">
   </section>
 
+  <section class="home-gallery-section">
+    <app-home-gallery></app-home-gallery>
+  </section>
+
   <section class="secondary-banner">
     <div class="text-container">
-      <h2>¿Qué es un amigurumi?</h2>
-      <p style="font-weight: bold;">Los Amigurumis son muñecos tejidos a crochet, de origen japonés. <br> Pequeños, tiernos y muy coloridos, <br>los Amigurumis son ideales para regalar a niños y adultos!</p>
-      <p>¡Contanos culquiera que sea tu personaje favorito y hacemos el tuyo!</p>
+      <h2>Descubre el encanto de los Amigurumis</h2>
+      <p>Delicados, únicos y llenos de vida: nuestros Amigurumis son muñecos artesanales tejidos a crochet, de origen japonés, que cautivan con su ternura y vibrante colorido.</p>
+      <p>Perfectos para regalar a niños y adultos, ¡dale un toque de magia a tus momentos!</p>
+    </div>
+    <div class="quotes">
+      <blockquote class="testimonial">
+        <img src="clientes/persona1.jpeg" alt="Ana cliente">
+        <p>“¡Los amo! Los detalles y la dedicación hacen que sean el regalo perfecto.”</p>
+        <footer>– Ana, clienta de Sweet.Ly</footer>
+      </blockquote>
+      <blockquote class="testimonial">
+        <img src="clientes/persona3.jpeg" alt="Javier cliente">
+        <p>“Soy fanático de los Pokémon, pedi y me hicieron un Pikachu. ¡Es perfecto!”</p>
+        <footer>– Javier, cliente de Sweet.Ly</footer>
+      </blockquote>
+      <blockquote class="testimonial">
+        <img src="clientes/persona2.jpeg" alt="Clementina cliente">
+        <p>“Fueron los souvenirs de mi casamiento. ¡Todos los invitados se enamoraron!”</p>
+        <footer>– Clementina, clienta de Sweet.Ly</footer>
+      </blockquote>
     </div>
   </section>
 
+
   <section class="elegi-favorito">
-    <div class="imagenes">
-      <img src="favorito-1.jpeg" alt="Amigurumi Tacky">
-      <img src="portada.jpeg" alt="Amigurumi Niña">
-      <img src="favorito-2.jpeg" alt="Amigurumi Baby Yoda">
+
+    <div class="text-container text-container-elegi">
+      <h2>Elegí tu nuevo favorito</h2>
+      <p>y hace tu pedido 100% personalizado</p>
     </div>
-    <div class="text-container">
-      <h2 style="padding: 20px; text-align: left;">Elegí tu nuevo favorito</h2>
-      <p style="text-align: left; font-weight: bold;">y hace tu pedido 100% personalizado</p>
-      <button mat-button routerLink="/productos">Ver mas Diseños</button>
+    <div class="imagenes img-favoritos">
+      <img src="favoritos/bubu.jpeg" alt="Amigurumi Tacky">
+      <img src="favoritos/messi-1.jpeg" alt="Amigurumi Niña">
+      <img src="favoritos/portada.jpeg" alt="Amigurumi Baby Yoda">
     </div>
+    <button mat-button [routerLink]="['/productos']">Ver todo el catálogo</button>
+
   </section>
 
   <section class="info">
     <div class="cards">
       <mat-card appearance="outlined">
-        <img src="entregas.png" alt="">
+        <img src="info/entregas.png" alt="">
         <p style="font-weight: bold;">Envios a todo el pais</p>
       </mat-card>
 
       <mat-card appearance="outlined">
-        <img src="corazon.png" alt="">
+        <img src="info/corazon.png" alt="">
         <p style="font-weight: bold;">Unite a los 1.812 <br> que ya tienen el suyo</p>
       </mat-card>
 
       <mat-card appearance="outlined">
-        <img src="peluche.png" alt="">
+        <img src="info/peluche.png" alt="">
         <p style="font-weight: bold;">Hacemos tu personaje favorito a pedido!</p>
       </mat-card>
 
@@ -54,46 +81,7 @@
 
   <section class="contacto">
     <div class="text-container">
-      <h2>¿Querés hacer un pedido?</h2>
-
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-        <!-- Campo Nombre -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="nombre" placeholder="Ingresa tu nombre">
-          <mat-error *ngIf="contactForm.get('nombre')?.hasError('required')">
-            El nombre es requerido.
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Campo Email -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Ingresa tu email">
-          <!-- Si el email no cumple con el patrón, muestra error -->
-          <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
-            El email es requerido.
-          </mat-error>
-          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
-            El email no es válido.
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Campo Mensaje -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Mensaje</mat-label>
-          <textarea matInput formControlName="mensaje" placeholder="Escribe tu mensaje" rows="4"></textarea>
-          <mat-error *ngIf="contactForm.get('mensaje')?.hasError('required')">
-            El mensaje es requerido.
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Botón Enviar -->
-        <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">
-          Enviar
-        </button>
-      </form>
-
+      <app-contacto></app-contacto>
     </div>
   </section>
 </div>
