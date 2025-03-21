@@ -1,56 +1,24 @@
 <nav class="nav-bar">
   <div class="nav-bar-items">
     <div class="logo">
-      <!-- Usa routerLink en lugar de href para navegación interna en Angular -->
       <a routerLink="/">
         <img src="logos/logo.jpeg" alt="logo" />
       </a>
     </div>
 
     <div class="nav-bar-buttons">
-
-      <!-- Ícono de Carrito con badge (contador) -->
+      <!-- Botón del carrito: al presionarlo se abre/ciERRA el mini-carrito -->
       <button
         mat-icon-button
-        [matMenuTriggerFor]="cartMenu"
-        (menuOpened)="loadCartItems()"
+        (click)="toggleCart()"
         matBadge="{{ cartCount }}"
-        matBadgeColor="accent"
-        matBadgeSize="small"
-        matBadgeHidden="{{ cartCount === 0 }}"
+        matBadgeColor="primary"
+        [matBadgeHidden]="cartCount === 0"
       >
         <mat-icon>shopping_cart</mat-icon>
       </button>
 
-      <!-- Overlay con mat-menu que se abre al hacer clic en el ícono -->
-      <mat-menu
-        #cartMenu="matMenu"
-        xPosition="before"
-      >
-        <div class="mini-cart-container">
-          <div *ngIf="cartItems.length > 0; else emptyCart">
-            <!-- Mostrar cada producto en el carrito -->
-            <div class="mini-cart-item" *ngFor="let item of cartItems">
-              <p>{{ item.name }} (x{{ item.quantity }})</p>
-              <p>Subtotal: ${{ item.precio * item.quantity }}</p>
-            </div>
-            <hr />
-            <p><strong>Total:</strong> ${{ getCartTotal() }}</p>
-
-            <!-- Botón para ir a la página /carrito -->
-            <button mat-button color="primary" [routerLink]="['/carrito']">
-              Ir al carrito
-            </button>
-          </div>
-
-          <!-- Si no hay productos en el carrito, mostramos este mensaje -->
-          <ng-template #emptyCart>
-            <p>El carrito está vacío</p>
-          </ng-template>
-        </div>
-      </mat-menu>
-
-      <!-- Menú hamburguesa (para pantallas móviles, etc.) -->
+      <!-- Menú hamburguesa (para móviles) -->
       <div class="burger" (click)="toggleMenu()">
         <i [ngClass]="isMenuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
       </div>
@@ -62,4 +30,38 @@
       </div>
     </div>
   </div>
+
+  <!-- Mini-carrito desplegable debajo de la nav-bar -->
+<div class="cart-dropdown" [ngClass]="{'open': isCartOpen, 'closed': !isCartOpen}">
+  <div class="mini-cart-container">
+    <div class="container" *ngIf="cartItems.length > 0; else emptyCart">
+      <h3 class="mini-cart-title">Mi Carrito</h3>
+      <div class="mini-cart-items">
+        <div class="mini-cart-item" *ngFor="let item of cartItems">
+          <span class="item-name">{{ item.name }}</span>
+          <div class="precio-cantidad">
+            <span class="item-quantity">x{{ item.quantity }}</span>
+            <span class="item-subtotal">${{ item.precio * item.quantity }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="mini-cart-total">
+        <span>Total:</span>
+        <span>${{ getCartTotal() }}</span>
+      </div>
+      <div class="botones-carrito">
+        <button mat-flat-button color="primary" [routerLink]="['/carrito']" (click)="closeCart()">
+          Ir al carrito
+        </button>
+        <button mat-button color="accent" (click)="clearCart()">Vaciar carrito</button>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p class="empty-cart-message">El carrito está vacío</p>
+    </ng-template>
+  </div>
+</div>
+
+
+
 </nav>

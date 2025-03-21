@@ -26,6 +26,7 @@ import { CartService, CartItem } from '../services/cart.service';
 export class NavBarComponent implements OnInit {
 
   isMenuOpen: boolean = false;
+  isCartOpen: boolean = false;
   cartCount = 0;
   cartItems: CartItem[] = [];
 
@@ -44,6 +45,22 @@ export class NavBarComponent implements OnInit {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  toggleCart() {
+    this.isCartOpen = !this.isCartOpen;
+    if (this.isCartOpen) {
+      this.loadCartItems();
+    }
+  }
+
+  closeCart() {
+    this.isCartOpen = false;
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+    this.loadCartItems();
   }
 
   // Se invoca automáticamente al abrir el mat-menu

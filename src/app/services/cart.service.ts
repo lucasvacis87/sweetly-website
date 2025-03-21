@@ -63,6 +63,11 @@ export class CartService {
     return this.cartItems;
   }
 
+  clearCart(): void {
+    this.cartItems = [];
+    this.updateCount();
+  }
+
   // Calcula la cantidad total de ítems
   private updateCount(): void {
     const totalQuantity = this.cartItems.reduce((acc, item) => acc + item.quantity, 0);

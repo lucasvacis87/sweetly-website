@@ -74,8 +74,6 @@ export class ProductosComponent {
     // Llamamos al servicio para AGREGAR o ACTUALIZAR la cantidad de este producto en el carrito
     this.cartService.addOrUpdateItem(item.id, item.name, item.precio, item.selectedQuantity);
 
-    // Opcional: resetear la cantidad local a 1
-    // item.selectedQuantity = 1;
   }
 
 
@@ -99,7 +97,7 @@ export class ProductosComponent {
 
   sets: Set[] = [
     {
-      id: 1,
+      id: 1523,
       name: 'Set 1',
       description: 'Descripción del set 1',
       precio: 1000,
@@ -107,7 +105,7 @@ export class ProductosComponent {
       unidades: 3
     },
     {
-      id: 2,
+      id: 122,
       name: 'Set 2',
       description: 'Descripción del set 2',
       precio: 2000,
@@ -115,7 +113,7 @@ export class ProductosComponent {
       unidades: 5
     },
     {
-      id: 3,
+      id: 53,
       name: 'Set 3',
       description: 'Descripción del set 3',
       precio: 3000,
