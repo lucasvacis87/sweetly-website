@@ -1,7 +1,7 @@
 /* Barra de navegación */
 .nav-bar {
-  position: sticky;      /* Cambiado a sticky para que se mantenga visible al hacer scroll */
-  top: 0;                /* Se adhiere a la parte superior de la página */
+  position: sticky;  /* Se mantiene en la parte superior al hacer scroll */
+  top: 0;
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,14 +9,16 @@
   justify-content: space-between;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 2000;         /* Mayor que el del menú móvil */
-  width: 100%;           /* Asegura que la barra de navegación ocupe el 100% del ancho */
+  /* Ajustamos para que no quede demasiado por encima del mat-menu */
+  z-index: 1000;
+  width: 100%;
 }
 
+/* Ícono del menú hamburguesa (por defecto, oculto en desktop) */
 i {
   font-size: 1.5rem;
   cursor: pointer;
-  display: none;            /* Oculto por defecto */
+  display: none;
   padding: 15px;
 }
 
@@ -29,7 +31,7 @@ i {
   border-radius: 50%;
 }
 
-/* Contenedor de elementos */
+/* Contenedor de items */
 .nav-bar-items {
   display: flex;
   width: 100%;
@@ -43,7 +45,7 @@ i {
   align-items: center;
 }
 
-/* Estilos generales para los enlaces */
+/* Enlaces */
 a {
   text-decoration: none;
   color: black;
@@ -51,9 +53,9 @@ a {
   display: inline-block;
 }
 
-/* Estilos para dispositivos móviles */
+/* Estilos para móviles */
 @media screen and (max-width: 768px) {
-  /* Mostrar el icono de la hamburguesa */
+  /* Mostrar icono hamburguesa */
   i {
     display: block;
   }
@@ -62,31 +64,31 @@ a {
     cursor: pointer;
   }
 
-  /* Configuración inicial del menú móvil */
+  /* Menú móvil */
   .nav-bar-links {
-    display: flex;            /* Siempre se muestra como flex para poder animar */
+    display: flex;
     flex-direction: column;
     position: absolute;
-    top: 100%;                /* Se posiciona justo debajo de la nav-bar */
+    top: 100%;
     left: 0;
     width: 100%;
     background: #fff;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000;            /* Debe quedar por debajo de la nav-bar */
+    z-index: 999; /* Para que no tape la navbar misma, pero cubra contenido */
 
-    /* Propiedades para la animación */
-    opacity: 0;               /* Empieza oculto */
-    transform: translateY(-20px); /* Levantado un poco hacia arriba */
+    /* Animación: empieza oculto */
+    opacity: 0;
+    transform: translateY(-20px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    pointer-events: none;     /* Evita interacciones cuando está oculto */
+    pointer-events: none; /* No clickeable cuando está oculto */
   }
 
-  /* Estado cuando el menú está abierto */
+  /* Menú móvil abierto */
   .nav-bar-links.is-open {
-    opacity: 1;               /* Se vuelve visible */
-    transform: translateY(0); /* Vuelve a su posición normal */
-    pointer-events: auto;     /* Permite interacciones */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .nav-bar-links a {

@@ -39,3 +39,25 @@ mat-button-toggle {
   margin: 0 0.5rem;
   font-size: 1rem;
 }
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  .cantidad-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+
+    button {
+      border-radius: 15px;
+      padding: 0.5rem;
+    }
+
+  }
+
+}

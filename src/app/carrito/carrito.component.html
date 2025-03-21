@@ -1,0 +1,29 @@
+<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+  <h2>Tu Carrito</h2>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <span>{{ item.name }}</span>
+    <span>Precio: ${{ item.precio }}</span>
+
+    <div class="quantity-controls">
+      <button mat-icon-button color="warn" (click)="decrement(item)">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <span>{{ item.quantity }}</span>
+      <button mat-icon-button color="primary" (click)="increment(item)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="remove(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <p><strong>Subtotal:</strong> ${{ item.precio * item.quantity }}</p>
+  </div>
+
+  <h3>Total: ${{ getTotal() }}</h3>
+  <button mat-raised-button color="accent">Proceder al pago</button>
+</div>
+
+<ng-template #emptyCart>
+  <h2>Tu carrito está vacío</h2>
+  <button mat-raised-button routerLink="/productos">Ir a productos</button>
+</ng-template>

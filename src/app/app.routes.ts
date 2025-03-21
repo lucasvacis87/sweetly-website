@@ -9,5 +9,8 @@ export const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'como-lo-hacemos', component: ComoLoHacemosComponent },
   { path: 'contacto', component: ContactoComponent },
+  { path: 'carrito', loadComponent: () => import('./carrito/carrito.component')
+    .then(m => m.CartPageComponent)
+  },
   { path: '**', redirectTo: '' }
 ];
