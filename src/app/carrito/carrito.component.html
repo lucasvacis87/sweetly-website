@@ -38,5 +38,7 @@
 
 <ng-template #emptyCart>
   <h2>Tu carrito está vacío</h2>
-  <button mat-raised-button routerLink="/productos">Ir a productos</button>
+  <div class="descuentos-pago">
+    <button mat-raised-button [routerLink]="['/productos']">Ir a productos</button>
+  </div>
 </ng-template>

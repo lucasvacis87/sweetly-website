@@ -14,22 +14,7 @@ export interface CartItem {
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: CartItem[] = [
-    {
-      id: 1,
-      name: "Elmo sabe donde vives",
-      precio: 92935,
-      quantity: 1,
-      imageUrl: "favoritos/messi-1.jpeg"
-    },
-    {
-      id: 3,
-      name: "Producto 3",
-      precio: 300,
-      quantity: 1,
-      imageUrl: "babby-yoda/yoda-1.jpeg"
-  }
-  ];
+  private cartItems: CartItem[] = [];
   private cartCountSubject = new BehaviorSubject<number>(0);
   cartCount$ = this.cartCountSubject.asObservable();
 

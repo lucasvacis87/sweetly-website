@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.como-lo-hacemos {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+/* Introducción */
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.intro p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Secciones de paso */
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Contenido del paso */
+.step-content {
+  flex: 1;
+}
+.step-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.step-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Imagen del paso */
+.step-image {
+  flex: 1;
+  text-align: center;
+}
+.step-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección final */
+.final {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+.final h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+.final p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Responsive: para pantallas pequeñas se apilan las secciones */
+@media screen and (max-width: 768px) {
+  .step {
+    flex-direction: column;
+    text-align: center;
+  }
+  .step:nth-child(even) {
+    flex-direction: column;
+  }
+}
