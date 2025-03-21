@@ -72,7 +72,7 @@ export class ProductosComponent {
       item.selectedQuantity = 1; // fallback
     }
     // Llamamos al servicio para AGREGAR o ACTUALIZAR la cantidad de este producto en el carrito
-    this.cartService.addOrUpdateItem(item.id, item.name, item.precio, item.selectedQuantity);
+    this.cartService.addOrUpdateItem(item.id, item.name, item.precio, item.selectedQuantity, item.images[0]);
 
   }
 
@@ -84,7 +84,7 @@ export class ProductosComponent {
       name: 'Amigurumi Messi',
       description: 'Descripción del producto 1 - Messi con la bandaaaaa!!!!',
       precio: 100,
-      images: ['messi/messi-1.jpeg', 'messi/messi-2.jpeg', 'messi/messias.jpg']
+      images: ['messi/messi-1.jpeg', 'messi/messi-2.jpeg', 'messi/messias.jpg'],
     },
     {
       id: 3,

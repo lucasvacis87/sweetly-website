@@ -7,25 +7,41 @@ export interface CartItem {
   name: string;
   precio: number;
   quantity: number;
+  imageUrl: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: CartItem[] = [];
+  private cartItems: CartItem[] = [
+    {
+      id: 1,
+      name: "Elmo sabe donde vives",
+      precio: 92935,
+      quantity: 1,
+      imageUrl: "favoritos/messi-1.jpeg"
+    },
+    {
+      id: 3,
+      name: "Producto 3",
+      precio: 300,
+      quantity: 1,
+      imageUrl: "babby-yoda/yoda-1.jpeg"
+  }
+  ];
   private cartCountSubject = new BehaviorSubject<number>(0);
   cartCount$ = this.cartCountSubject.asObservable();
 
   constructor() {}
 
   // Agrega o actualiza la cantidad de un producto en el carrito
-  addOrUpdateItem(id: number, name: string, precio: number, quantity: number) {
+  addOrUpdateItem(id: number, name: string, precio: number, quantity: number, imageUrl: string) {
     const existing = this.cartItems.find(i => i.id === id);
     if (existing) {
       existing.quantity += quantity;
     } else {
-      this.cartItems.push({ id, name, precio, quantity });
+      this.cartItems.push({ id, name, precio, quantity, imageUrl });
     }
     this.updateCount();
   }

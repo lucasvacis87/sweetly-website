@@ -1,26 +1,39 @@
 <div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
   <h2>Tu Carrito</h2>
   <div *ngFor="let item of cartItems" class="cart-item">
-    <span>{{ item.name }}</span>
-    <span>Precio: ${{ item.precio }}</span>
+    <img src="{{ item.imageUrl }}" alt="{{ item.name }}" class="item-image">
+    <div class="item-info">
+      <p>{{ item.name }}</p>
+      <p>Precio: ${{ item.precio }}</p>
 
-    <div class="quantity-controls">
-      <button mat-icon-button color="warn" (click)="decrement(item)">
-        <mat-icon>remove</mat-icon>
-      </button>
-      <span>{{ item.quantity }}</span>
-      <button mat-icon-button color="primary" (click)="increment(item)">
-        <mat-icon>add</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="remove(item)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div class="quantity-controls">
+        <button mat-icon-button color="primary" (click)="decrement(item)">
+          <mat-icon>remove</mat-icon>
+        </button>
+
+        <p>{{ item.quantity }}</p>
+
+        <button mat-icon-button color="primary" (click)="increment(item)">
+          <mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" (click)="remove(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <p><strong>Subtotal:</strong> ${{ item.precio * item.quantity }}</p>
+
     </div>
-    <p><strong>Subtotal:</strong> ${{ item.precio * item.quantity }}</p>
+
+
   </div>
 
-  <h3>Total: ${{ getTotal() }}</h3>
-  <button mat-raised-button color="accent">Proceder al pago</button>
+  <div class="descuentos-pago">
+    <h3>Total: ${{ getTotal() }}</h3>
+    <button mat-raised-button color="accent" class="boton-pago">Proceder al pago</button>
+  </div>
+
 </div>
 
 <ng-template #emptyCart>

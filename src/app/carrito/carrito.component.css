@@ -1,0 +1,137 @@
+/* Reset y base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Contenedor principal del carrito */
+.cart-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Título del carrito */
+.cart-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Cada ítem del carrito */
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 20px;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+/* Imagen del producto */
+.item-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Información del producto */
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-info p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Controles de cantidad */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.quantity-controls button:hover {
+  color: #e79ac1;
+}
+
+.quantity-controls p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Subtotal */
+.item-info strong {
+  color: #333;
+}
+
+/* Sección de total y botones de pago */
+.descuentos-pago {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.descuentos-pago h3 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+}
+
+.boton-pago {
+  padding: 10px 30px;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+/* Responsive: en pantallas pequeñas, los ítems se apilan verticalmente */
+@media screen and (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-image {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+
+  .item-info {
+    width: 100%;
+  }
+}
