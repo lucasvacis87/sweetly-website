@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/sweetly-website',
+  basePath: 'https://lucasvacis87.github.io/sweetly-website',
   supportedLocales: {
   "en-US": ""
 },
