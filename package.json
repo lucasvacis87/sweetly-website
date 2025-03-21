@@ -1,16 +1,16 @@
 {
   "name": "sweetly-website",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --configuration=development",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:sweetly-website": "node dist/sweetly-website/server/server.mjs",
-    "deploy": "ng run sweetly-website:build:production --base-href=/sweetly-website/ && npx angular-cli-ghpages --dir=dist/sweetly-website/browser"
+
+    "deploy": "ng build --configuration production --base-href=/sweetly-website/ && npx angular-cli-ghpages --dir=dist/sweetly-website"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
     "@angular/cdk": "^19.2.2",
@@ -21,9 +21,7 @@
     "@angular/material": "^19.2.2",
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
-    "@angular/platform-server": "^19.1.0",
     "@angular/router": "^19.1.0",
-    "@angular/ssr": "^19.1.7",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "emailjs-com": "^3.2.0",
     "express": "^4.18.2",

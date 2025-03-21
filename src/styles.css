@@ -6,6 +6,7 @@
 :root {
   --primary-color: #ffb3c6; /* Rosa pastel principal */
   --secondary-color: #ffccd5; /* Rosa claro secundario */
+  --tertiary-light-color: #fff5f7; /* Rosa pastel suave */
   --background-color: #fff0f3; /* Fondo rosado suave */
   --text-color: #333333; /* Texto gris oscuro para contraste */
   --text-light-color: #696767; /* Texto blanco para contraste */

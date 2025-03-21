@@ -1,59 +1,34 @@
+<div class="oferta">
+  <a href="/productos">
+    Aprovecha nuestra oferta de lanzamiento: ¡10% de descuento en tu primer pedido!
+  </a>
+</div>
 <div class="home-container">
   <section class="home-container-main-banner">
     <div class="text-container">
         <div class="title-container">
           <h1>Sweetly</h1>
         </div>
-      <h2>Haz que tus momentos <br> sean mas tiernos y llenos de amor</h2>
+      <h2>Hacé que tus momentos <br> sean mas tiernos y llenos de amor</h2>
       <h3 style="font-size: 24px;">con nuestros Amigurumis</h3>
-      <button mat-stroked-button [routerLink]="['/productos']">
-        ¡Descubre tus amigurumis!
+      <button mat-raised-button [routerLink]="['/productos']">
+        ¡Descubrí tus amigurumis!
       </button>
     </div>
 
     <img src="portada1.png" alt="Amigurumis Sweetly">
   </section>
 
-  <section class="home-gallery-section">
-    <app-home-gallery></app-home-gallery>
-  </section>
-
-  <section class="secondary-banner">
-    <div class="text-container">
-      <h2>Descubre el encanto de los Amigurumis</h2>
-      <p>Delicados, únicos y llenos de vida: nuestros Amigurumis son muñecos artesanales tejidos a crochet, de origen japonés, que cautivan con su ternura y vibrante colorido.</p>
-      <p>Perfectos para regalar a niños y adultos, ¡dale un toque de magia a tus momentos!</p>
-    </div>
-    <div class="quotes">
-      <blockquote class="testimonial">
-        <img src="clientes/persona1.jpeg" alt="Ana cliente">
-        <p>“¡Los amo! Los detalles y la dedicación hacen que sean el regalo perfecto.”</p>
-        <footer>– Ana, clienta de Sweet.Ly</footer>
-      </blockquote>
-      <blockquote class="testimonial">
-        <img src="clientes/persona3.jpeg" alt="Javier cliente">
-        <p>“Soy fanático de los Pokémon, pedi y me hicieron un Pikachu. ¡Es perfecto!”</p>
-        <footer>– Javier, cliente de Sweet.Ly</footer>
-      </blockquote>
-      <blockquote class="testimonial">
-        <img src="clientes/persona2.jpeg" alt="Clementina cliente">
-        <p>“Fueron los souvenirs de mi casamiento. ¡Todos los invitados se enamoraron!”</p>
-        <footer>– Clementina, clienta de Sweet.Ly</footer>
-      </blockquote>
-    </div>
-  </section>
-
-
   <section class="elegi-favorito">
 
     <div class="text-container text-container-elegi">
       <h2>Elegí tu nuevo favorito</h2>
-      <p>y hace tu pedido 100% personalizado</p>
+      <p>ó hace tu pedido 100% personalizado</p>
     </div>
-    <div class="imagenes img-favoritos">
-      <img src="favoritos/bubu.jpeg" alt="Amigurumi Tacky">
+    <div class="img-favoritos">
+      <img src="favoritos/portada.jpeg" alt="Amigurumi Tacky">
       <img src="favoritos/messi-1.jpeg" alt="Amigurumi Niña">
-      <img src="favoritos/portada.jpeg" alt="Amigurumi Baby Yoda">
+      <img src="favoritos/bubu.jpeg" alt="Amigurumi Baby Yoda">
     </div>
     <button mat-raised-button [routerLink]="['/productos']">Ver todo el catálogo</button>
 
@@ -79,9 +54,39 @@
     </div>
   </section>
 
+  <section class="home-gallery-section">
+    <app-home-gallery></app-home-gallery>
+  </section>
+
+  <section class="testimonios-section">
+    <div class="text-container">
+      <h2>Testimonios de nuestros clientes</h2>
+      <p>Muñecos artesanales tejidos a crochet, de origen japonés, que cautivan con su ternura y vibrante colorido.</p>
+      <p>Perfectos para regalar a niños y adultos, ¡dale un toque de magia a tus momentos!</p>
+    </div>
+    <div class="quotes">
+      <blockquote class="testimonial">
+        <img src="clientes/persona1.jpeg" alt="Ana cliente">
+        <p>“¡Están geniales estos peluchitos! Me sorprendió lo lindos que son en persona. Llegaron rapidísimo y ya los recomendé a mis amigos.”</p>
+        <footer>– Ana, clienta de Sweet.Ly</footer>
+      </blockquote>
+      <blockquote class="testimonial">
+        <img src="clientes/persona3.jpeg" alt="Javier cliente">
+        <p>“Pedí un amigurumi personalizado y quedó espectacular. Encima me asesoraron un montón, la verdad que vale cada peso.”</p>
+        <footer>– Javier, cliente de Sweet.Ly</footer>
+      </blockquote>
+      <blockquote class="testimonial">
+        <img src="clientes/persona2.jpeg" alt="Clementina cliente">
+        <p>“No sabés lo feliz que quedó mi sobrina con el amigurumi que le regalé. ¡Está chocha! La calidad es impresionante y la atención, de diez.”</p>
+        <footer>– Clementina, clienta de Sweet.Ly</footer>
+      </blockquote>
+    </div>
+  </section>
+
   <section class="contacto">
     <div class="text-container">
       <app-contacto></app-contacto>
     </div>
   </section>
+
 </div>

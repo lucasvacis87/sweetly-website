@@ -5,8 +5,8 @@
 }
 
 section {
-  margin-top: 50px;
-  margin-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 h2 {
@@ -18,6 +18,22 @@ h2 {
   text-align: center;
 }
 
+.oferta{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--secondary-color);
+  padding: 8px;
+
+
+  a {
+    margin: 0px;
+    padding: 2px;
+    color: black;
+    text-decoration: none;
+  }
+}
+
 .text-container {
   display: flex;
   flex-direction: column;
@@ -25,6 +41,10 @@ h2 {
   align-items: center;
   padding: 40px;
   text-align: left;
+}
+
+.testimonios-section {
+  background-color: var(--tertiary-light-color);
 }
 
 .quotes {
@@ -44,9 +64,15 @@ h2 {
   align-items: center;
   background-color: white;
   padding: 40px;
+  border-radius: 20px;
 
   img {
     max-width: 150px;
+  }
+
+  footer {
+    font-weight: 550;
+    font-size: 12px;
   }
 }
 
@@ -62,27 +88,24 @@ img {
 .elegi-favorito {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   background-color: white;
-  padding: 40px;
 }
 
-
-.elegi-favorito .imagenes {
-  width: 100%;
-  justify-content: space-around;
+.elegi-favorito .img-favoritos {
   display: flex;
+  justify-content: space-around;
+  padding-bottom: 50px;
   flex-wrap: wrap;
-  align-items: center;
-  padding: 20px;
-}
 
-.elegi-favorito .imagenes img {
-  object-fit: cover;
-  height: 200px; /* Ajusta la altura según necesites */
-  border-radius: 20px;
-  padding: 10px;
+
+  img {
+    object-fit: cover;
+    height: 400px; /* Ajusta la altura según necesites */
+    width: 400px; /* Ajusta el ancho según necesites */
+    border-radius: 20px;
+    padding: 10px;
+  }
 }
 
 .cards {
@@ -155,6 +178,10 @@ form mat-form-field {
   color: #555;                      /* Color de texto */
   line-height: 1.6;                 /* Altura de línea */
   margin-bottom: 10px;
+}
+
+.home-gallery-section {
+  background-color: #f5f5f5;
 }
 
 /* Mobile */

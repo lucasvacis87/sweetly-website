@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-home-gallery',
@@ -6,10 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './home-gallery.component.html',
   styleUrls: ['./home-gallery.component.css']
 })
-export class HomeGalleryComponent implements OnInit {
+export class HomeGalleryComponent implements OnInit, OnDestroy {
   @Input() images: string[] = [];
 
   currentIndex: number = 0;
+  intervalId: any;
 
   ngOnInit(): void {
     if (!this.images || this.images.length === 0) {
@@ -25,6 +26,16 @@ export class HomeGalleryComponent implements OnInit {
         'galeria/girasol-2.jpeg'
         // Agregá la cantidad de imágenes que necesites
       ];
+    }
+
+    this.intervalId = setInterval(() => {
+      this.next();
+    }, 3000); // Cambia la imagen cada 3 segundos
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
     }
   }
 
