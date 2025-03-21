@@ -14,15 +14,15 @@ export class HomeGalleryComponent implements OnInit {
   ngOnInit(): void {
     if (!this.images || this.images.length === 0) {
       this.images = [
-        '/galeria/tacky.jpeg',
-        '/galeria/messi-1.jpeg',
-        '/galeria/portada.jpeg',
-        '/galeria/angelitos.jpeg',
-        '/galeria/bubu.jpeg',
-        '/galeria/conejito.jpeg',
-        '/galeria/baby-yoda.jpeg',
-        '/galeria/bts.jpeg',
-        '/galeria/girasol-2.jpeg'
+        'galeria/tacky.jpeg',
+        'galeria/messi-1.jpeg',
+        'galeria/portada.jpeg',
+        'galeria/angelitos.jpeg',
+        'galeria/bubu.jpeg',
+        'galeria/conejito.jpeg',
+        'galeria/baby-yoda.jpeg',
+        'galeria/bts.jpeg',
+        'galeria/girasol-2.jpeg'
         // Agregá la cantidad de imágenes que necesites
       ];
     }
