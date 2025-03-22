@@ -25,15 +25,15 @@ import { CartService, CartItem } from '../services/cart.service';
 })
 export class NavBarComponent implements OnInit {
 
-  isMenuOpen: boolean = false;
-  isCartOpen: boolean = false;
-  cartCount = 0;
+  isMenuOpen = false;
+  isCartOpen = false;
+  showDropdown = false;
   cartItems: CartItem[] = [];
+  cartCount = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    // Suscribirse al observable para obtener la cuenta total
     this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
     });
@@ -45,6 +45,10 @@ export class NavBarComponent implements OnInit {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
   }
 
   toggleCart() {
@@ -63,14 +67,11 @@ export class NavBarComponent implements OnInit {
     this.loadCartItems();
   }
 
-  // Se invoca automáticamente al abrir el mat-menu
   loadCartItems(): void {
     this.cartItems = this.cartService.getItems();
-    console.log(this.cartItems);
   }
 
-  // Calcular el total sumando cantidad * precio de cada item
   getCartTotal(): number {
-    return this.cartItems.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
+    return this.cartItems.reduce((acc, item) => acc + item.precio * item.quantity, 0);
   }
 }

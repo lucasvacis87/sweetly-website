@@ -1,7 +1,7 @@
 .gallery-container {
   position: relative;
   width: 100%;
-  height: 200px; /* Altura fija para la galería */
+  height: 320px; /* Altura fija para la galería */
   display: flex;
   align-items: center;
   justify-content: center;

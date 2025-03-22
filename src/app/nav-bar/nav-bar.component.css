@@ -1,188 +1,194 @@
-/* Aseguramos que todo use box-sizing border-box */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Evitamos scroll horizontal */
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-/* Barra de navegación */
+/* Navbar base styles */
 .nav-bar {
   position: sticky;
   top: 0;
   width: 100%;
-  background: #fff;
-  padding: 0 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fila principal de la nav-bar */
-.nav-bar-items {
+.nav-bar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.75rem 1.5rem;
 }
 
-/* Logo */
 .logo img {
-  width: 70px;
-  height: 70px;
-  margin: 10px 0;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-/* Botones de la nav-bar */
-.nav-bar-buttons {
+.nav-links {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
 }
 
-/* Menú hamburguesa */
-.burger i {
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: none;
-  padding: 10px;
-}
-
-/* Enlaces de la nav-bar */
-.nav-bar-links {
-  display: flex;
-  gap: 15px;
-}
-.nav-bar-links a {
+.nav-links a,
+.dropdown > span {
   text-decoration: none;
   color: #333;
-  padding: 10px 15px;
-  transition: color 0.3s;
-}
-.nav-bar-links a:hover {
-  color: #007BFF;
-}
-/* Mini-carrito desplegable */
-.cart-dropdown {
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-  /* Estado cerrado por defecto */
-  max-height: 0;
-  opacity: 0;
-  padding: 0 20px; /* Solo el padding horizontal */
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.cart-dropdown.open {
-  /* Cuando está abierto: asignamos un max-height alto (ajusta según el contenido) */
-  max-height: 500px;
-  opacity: 1;
-  padding: 10px 20px; /* Se agrega padding vertical */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  width: -webkit-fill-available;
 }
 
-/* Resto de estilos del mini-carrito */
-.mini-cart-container {
-  margin: 0 auto;
-  font-size: 0.9rem;
-  /* Opcional: definir ancho máximo para el contenido interno */
-  max-width: 600px;
+.dropdown-menu.visible {
+  display: block;
 }
 
-.container {
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  white-space: nowrap;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-button {
+  background: none;
+  border: none;
+  position: relative;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: crimson;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}
+
+.burger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Sidebar Cart */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  transition: right 0.3s ease-in-out;
 }
 
-.mini-cart-title {
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 10px;
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
+.cart-sidebar.open {
+  right: 0;
 }
 
-.mini-cart-items {
-  max-height: 200px;
-  overflow-y: auto;
-  margin: 10px;
-}
-
-.mini-cart-item {
+.cart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
-  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1rem;
 }
 
-.precio-cantidad {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100px;
+.cart-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
-.mini-cart-total {
+.cart-header .close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-item {
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
-  margin-bottom: 10px;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.cart-footer {
+  margin-top: auto;
   border-top: 1px solid #ddd;
-  padding-top: 5px;
-  font-weight: bold;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.botones-carrito {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 10px;
+.cart-footer button {
+  background-color: #d40074;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .empty-cart-message {
   text-align: center;
   font-style: italic;
-  color: #888;
+  color: #777;
+  margin-top: 2rem;
 }
 
-/* Estilos para móviles */
+/* Overlay for cart */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1500;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
-  .burger i {
-    display: block;
-  }
-  .nav-bar-links {
-    flex-direction: column;
+  .nav-links {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
-    background: #fff;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    pointer-events: none;
+    width: -webkit-fill-available;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 1rem;
+    display: none;
   }
-  .nav-bar-links.is-open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  .nav-links.open {
+    display: flex;
   }
-  .nav-bar-links a {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
+  .burger {
     display: block;
   }
 }
