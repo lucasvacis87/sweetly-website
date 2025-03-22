@@ -39,8 +39,7 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
   margin-top: 0.5rem;
   list-style: none;
   padding: 0.5rem 0;
@@ -184,6 +183,10 @@
     flex-direction: column;
     padding: 1rem;
     display: none;
+  }
+
+  .dropdown-menu {
+    position: relative;
   }
   .nav-links.open {
     display: flex;
