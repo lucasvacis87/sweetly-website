@@ -15,11 +15,10 @@
   gap: 1rem;
 }
 
-.btn-medidas {
-  margin-top: 1rem;
-  font-weight: bold;
-  color: white;
-  background-color: #d40074;
+.btn-medidas-producto {
+  cursor: pointer;
+  font-size: small;
+  font-weight: lighter;
 }
 
 .productos-grid {

@@ -69,13 +69,19 @@ export class ProductosComponent {
 
     this.route.fragment.subscribe(fragment => {
       if (fragment === 'Sets Personalizados') {
-      setTimeout(() => this.tabGroup.selectedIndex = 1, 0); // tab 2 = Sets
+        this.tabGroup.selectedIndex = 1;
       } else if (fragment === 'Combos') {
-      setTimeout(() => this.tabGroup.selectedIndex = 2, 0); // tab 3 = Combos
+        this.tabGroup.selectedIndex = 2;
       } else {
-      setTimeout(() => this.tabGroup.selectedIndex = 0, 0); // default = Productos
+        this.tabGroup.selectedIndex = 0;
       }
-    })
+
+      // Espera un poco y hace scroll al id si existe
+      setTimeout(() => {
+        const el = document.getElementById(fragment || '');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+    });
   }
 
   // Botones +/–: modifican la cantidad local (solo en memoria, sin tocar el carrito)
