@@ -1,0 +1,27 @@
+<h2>Personalizar pedido: {{ data.name }}</h2>
+
+<div class="form-group">
+  <label for="cantidad">Cantidad de unidades</label>
+  <input id="cantidad" type="number" [(ngModel)]="cantidad" min="1" />
+</div>
+
+<div class="form-group">
+  <label for="tipo">Tipo de evento</label>
+  <select id="tipo" [(ngModel)]="tipoEvento">
+    <option value="">-- Seleccionar --</option>
+    <option value="Bautismo">Bautismo</option>
+    <option value="Baby Shower">Baby Shower</option>
+    <option value="Cumpleaños">Cumpleaños</option>
+    <option value="Otro">Otro</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="mensaje">Mensaje adicional</label>
+  <textarea id="mensaje" [(ngModel)]="mensaje" rows="3"></textarea>
+</div>
+
+<div class="modal-actions">
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="enviarPedido()">Enviar por WhatsApp</button>
+</div>

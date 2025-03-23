@@ -8,6 +8,8 @@ import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CustomSetDialogComponent } from '../custom-set-dialog/custom-set-dialog.component';
 
 
 interface Product {
@@ -50,7 +52,7 @@ export class ProductosComponent {
 
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
 
-  constructor(private cartService: CartService, private route: ActivatedRoute) {}
+  constructor(private cartService: CartService, private route: ActivatedRoute, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Inicializamos la cantidad seleccionada en 1 para cada producto y set
@@ -109,6 +111,14 @@ export class ProductosComponent {
 
   closeModal() {
     this.modalAbierto = false;
+  }
+
+  openCustomOrder(set: any) {
+    this.dialog.open(CustomSetDialogComponent, {
+      data: { name: set.name },
+      width: '100%',
+      maxWidth: '500px'
+    });
   }
 
   products: Product[] = [

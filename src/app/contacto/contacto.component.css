@@ -24,10 +24,6 @@ mat-card-subtitle {
   overflow: hidden;
 }
 
-button {
-  margin: 10px ;
-}
-
 .selected-file {
   display: flex;
   align-items: center;
