@@ -4,7 +4,7 @@
     <img src="{{ item.imageUrl }}" alt="{{ item.name }}" class="item-image">
     <div class="item-info">
       <p>{{ item.name }}</p>
-      <p>Precio: ${{ item.precio }}</p>
+      <p>Precio: {{ item.precio | precio }}</p>
 
       <div class="quantity-controls">
         <button mat-icon-button color="primary" (click)="decrement(item)">
@@ -22,15 +22,14 @@
         </button>
       </div>
 
-      <p><strong>Subtotal:</strong> ${{ item.precio * item.quantity }}</p>
-
+      <p><strong>Subtotal:</strong> {{ item.precio * item.quantity | precio }}</p>
     </div>
 
 
   </div>
 
   <div class="descuentos-pago">
-    <h3>Total: ${{ getTotal() }}</h3>
+    <h3>Total: {{ getTotal() | precio }}</h3>
     <button mat-raised-button color="accent" class="boton-pago">Proceder al pago</button>
   </div>
 

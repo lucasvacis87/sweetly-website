@@ -4,12 +4,13 @@ import { CartService, CartItem } from '../services/cart.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { PrecioPipe } from "../shared/precio.pipe";
 
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, RouterModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, RouterModule, PrecioPipe],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })

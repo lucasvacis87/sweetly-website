@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
+import { PrecioPipe } from '../shared/precio.pipe';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,7 +19,8 @@ import { CartService, CartItem } from '../services/cart.service';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    PrecioPipe
   ],
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
@@ -64,6 +66,21 @@ export class NavBarComponent implements OnInit {
 
   clearCart() {
     this.cartService.clearCart();
+    this.loadCartItems();
+  }
+
+  increment(item: CartItem) {
+    this.cartService.incrementQuantity(item.id);
+    this.loadCartItems();
+  }
+
+  decrement(item: CartItem) {
+    this.cartService.decrementQuantity(item.id);
+    this.loadCartItems();
+  }
+
+  removeItem(item: CartItem) {
+    this.cartService.removeItem(item.id);
     this.loadCartItems();
   }
 

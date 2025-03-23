@@ -24,7 +24,7 @@ export class TransitionLoaderComponent {
         setTimeout(() => {
           this.show = false;
           document.body.classList.remove('loading');
-        }, 1000);
+        }, 1600);
       }
 
     });
