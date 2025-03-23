@@ -13,9 +13,9 @@
       <div class="dropdown" (click)="toggleDropdown()">
         <span>Productos</span>
         <ul class="dropdown-menu" [class.visible]="showDropdown">
-          <li><a routerLink="/productos" fragment="Novedades" (click)="closeMenu()">Novedades</a></li>
           <li><a routerLink="/productos"  (click)="closeMenu()">Amigurumis</a></li>
           <li><a routerLink="/productos" fragment="Sets Personalizados" (click)="closeMenu()">Sets</a></li>
+          <li><a routerLink="/productos" fragment="Combos" (click)="closeMenu()">Combos</a></li>
         </ul>
       </div>
 

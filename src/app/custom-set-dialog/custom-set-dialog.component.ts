@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-custom-set-dialog',
   imports: [FormsModule, MatButtonModule, ReactiveFormsModule],
-templateUrl: './custom-set-dialog.component.html',
+  templateUrl: './custom-set-dialog.component.html',
   styleUrl: './custom-set-dialog.component.css'
 })
 export class CustomSetDialogComponent {

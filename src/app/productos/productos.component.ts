@@ -10,6 +10,7 @@ import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomSetDialogComponent } from '../custom-set-dialog/custom-set-dialog.component';
+import { PrecioPipe } from "../shared/precio.pipe";
 
 
 interface Product {
@@ -30,6 +31,8 @@ interface Set {
   images: string[];
   unidades: number;
   selectedQuantity?: number;
+  estimatedTime?: string;
+  colors?: string[];
 }
 
 @Component({
@@ -44,7 +47,8 @@ interface Set {
     MatTabsModule,
     MatIconModule,
     MatTabGroup,
-  ],
+    PrecioPipe
+],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
@@ -54,16 +58,20 @@ export class ProductosComponent {
 
   constructor(private cartService: CartService, private route: ActivatedRoute, private dialog: MatDialog) {}
 
+  modalAbierto = false;
+
   ngOnInit(): void {
     // Inicializamos la cantidad seleccionada en 1 para cada producto y set
     this.products.forEach(p => p.selectedQuantity = 1);
     this.sets.forEach(s => s.selectedQuantity = 1);
+    this.combos.forEach(c => c.selectedQuantity = 1);
+
 
     this.route.fragment.subscribe(fragment => {
       if (fragment === 'Sets Personalizados') {
       setTimeout(() => this.tabGroup.selectedIndex = 1, 0); // tab 2 = Sets
-      } else if (fragment === 'Novedades') {
-      setTimeout(() => this.tabGroup.selectedIndex = 2, 0); // tab 3 = Novedades
+      } else if (fragment === 'Combos') {
+      setTimeout(() => this.tabGroup.selectedIndex = 2, 0); // tab 3 = Combos
       } else {
       setTimeout(() => this.tabGroup.selectedIndex = 0, 0); // default = Productos
       }
@@ -93,17 +101,6 @@ export class ProductosComponent {
     this.cartService.addOrUpdateItem(item.id, item.name, item.precio, item.selectedQuantity, item.images[0]);
 
   }
-
-  formatPrecio(value: number): string {
-    return value.toLocaleString('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  }
-
-  modalAbierto = false;
 
   openModal() {
     this.modalAbierto = true;
@@ -216,30 +213,30 @@ export class ProductosComponent {
     }
   ];
 
-  novedades: Product[] = [
+  combos: Set[] = [
     {
-      id: 5,
-      name: 'Bubu',
-      description: 'Bubucita la panda viral de TikTok!',
-      precio: 10000,
-      images: ['bubu/bubu-1.jpeg', 'bubu/bubu-2.jpeg', 'bubu/bubu-4.jpeg', 'bubu/bubu-5.jpeg', 'bubu/bubu-6.jpeg'],
-      size: 'Mediano'
+      id: 111,
+      name: 'Bautismo',
+      description: 'Set de Angelitos, incluye un Angel grande y angelitos para nene o nena a eleccion de cantidades.',
+      precio: 50000,
+      images: ['Sets/set-3.png'],
+      unidades: 40
     },
     {
-      id: 6,
-      name: 'Conejito Tierno',
-      description: 'Conejito tierno de color que vos quieras!',
-      precio: 10000,
-      images: ['conejito/conejito-1.jpeg', 'conejito/conejito-2.jpeg', 'conejito/conejito-2.jpeg'],
-      size: 'Peque'
+      id: 112,
+      name: 'Baby Shower',
+      description: 'Set de Animalitos a eleccion, contanos lo que buscas y cuantos necesitas. Incluye figura tamaño Grande y Peques.',
+      precio: 20000,
+      images: ['Sets/set-2.png'],
+      unidades: 25
     },
     {
-      id: 7,
-      name: 'Oso Escandaloso',
-      description: 'Oso Escandaloso',
-      precio: 10000,
-      images: ['escandalosos/osos-1.jpeg', 'escandalosos/osos-2.jpeg'],
-      size: 'Peque'
-    },
+      id: 113,
+      name: 'Grand Set Grand',
+      description: 'Set de figuras grandes personalizas y a medida.',
+      precio: 80000,
+      images: ['Sets/set-1.png' ],
+      unidades: 60
+    }
   ];
 }

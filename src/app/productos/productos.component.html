@@ -8,122 +8,108 @@
     </div>
   </section>
 
-  <!-- Tabs para elegir entre "Productos" y "Sets" -->
-  <mat-tab-group #tabGroup>
-    <!-- Tab de Productos -->
+  <mat-tab-group>
+    <!-- TAB: Productos -->
     <mat-tab label="Productos">
       <section class="productos-grid">
-        <mat-card appearance="outlined" *ngFor="let product of products">
-
+        <mat-card class="product-card" *ngFor="let product of products">
           <app-product-gallery [images]="product.images"></app-product-gallery>
+
           <mat-card-title>{{ product.name }}</mat-card-title>
 
           <mat-card-content>
             <p>{{ product.description }}</p>
-            <span>Tamaño: {{ product.size }}</span>
+            <p><strong>Tamaño:</strong> {{ product.size }}</p>
+            <p class="precio">{{ product.precio | precio }}</p>
           </mat-card-content>
 
-          <mat-card-content>
-            <p class="precio"> {{ formatPrecio(product.precio) }}</p>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <button mat-button color="accent" (click)="addToCart(product)">
-              Agregar al carrito
-            </button>
-            <div class="cantidad-botones">
-              <!-- Botón de “–” (restar localmente) -->
-              <button mat-button color="warn" (click)="decrementLocal(product)">
-                <mat-icon>remove</mat-icon>
-              </button>
-
-              <!-- Muestra la cantidad local -->
-              <span style="margin: 0 8px;">
-                {{ product.selectedQuantity }}
-              </span>
-
-              <!-- Botón de “+” (sumar localmente) -->
-              <button mat-button color="primary" (click)="incrementLocal(product)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </mat-card-actions>
-
-        </mat-card>
-      </section>
-    </mat-tab>
-
-    <!-- Tab de Sets -->
-<mat-tab label="Sets Personalizados">
-  <section class="productos-grid sets">
-    <mat-card appearance="outlined" *ngFor="let set of sets">
-
-      <app-product-gallery [images]="set.images"></app-product-gallery>
-      <mat-card-title>{{ set.name }}</mat-card-title>
-
-      <mat-card-content>
-        <p>{{ set.description }}</p>
-        <p>Incluye aproximadamente {{ set.unidades }} amigurumis</p>
-        <p class="precio">Desde {{ formatPrecio(set.precio) }}</p>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="openCustomOrder(set)">
-          Personalizar pedido
-        </button>
-      </mat-card-actions>
-
-    </mat-card>
-  </section>
-</mat-tab>
-
-
-    <!-- Tab de Novedades -->
-    <mat-tab label="Novedades">
-      <section class="productos-grid sets">
-        <mat-card appearance="outlined" *ngFor="let novedad of novedades">
-
-          <app-product-gallery [images]="novedad.images"></app-product-gallery>
-          <mat-card-title>{{ novedad.name }}</mat-card-title>
-
-          <mat-card-content>
-            <p>{{ novedad.description }}</p>
-          </mat-card-content>
-
-          <mat-card-content>
-            <p class="precio">{{ formatPrecio(novedad.precio) }}</p>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <button mat-button color="accent" (click)="addToCart(novedad)">
+          <mat-card-actions class="card-actions">
+            <button mat-raised-button color="accent" (click)="addToCart(product)">
               Agregar al carrito
             </button>
 
             <div class="cantidad-botones">
-              <!-- Botón de “–” (restar localmente) -->
-              <button mat-button color="warn" (click)="decrementLocal(novedad)">
+              <button mat-icon-button color="warn" (click)="decrementLocal(product)">
                 <mat-icon>remove</mat-icon>
               </button>
-
-              <!-- Muestra la cantidad local -->
-              <span style="margin: 0 8px;">
-                {{ novedad.selectedQuantity }}
-              </span>
-
-              <!-- Botón de “+” (sumar localmente) -->
-              <button mat-button color="primary" (click)="incrementLocal(novedad)">
+              <span>{{ product.selectedQuantity }}</span>
+              <button mat-icon-button color="primary" (click)="incrementLocal(product)">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
           </mat-card-actions>
         </mat-card>
-
       </section>
     </mat-tab>
 
+    <!-- TAB: Sets Personalizados -->
+    <mat-tab label="Sets Personalizados">
+      <section class="productos-grid">
+        <mat-card class="product-card" *ngFor="let set of sets">
+          <app-product-gallery [images]="set.images"></app-product-gallery>
+
+          <mat-card-title>{{ set.name }}</mat-card-title>
+
+          <mat-card-content>
+            <p>{{ set.description }}</p>
+            <p><strong>Incluye:</strong> aprox. {{ set.unidades }} amigurumis</p>
+            <p class="precio">Desde {{ set.precio | precio }}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="card-actions">
+            <button mat-raised-button color="primary" (click)="openCustomOrder(set)">
+              Quiero este Set
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </section>
+    </mat-tab>
+
+    <!-- TAB: Combos -->
+    <mat-tab label="Combos">
+      <section class="productos-grid">
+        <mat-card class="product-card" *ngFor="let combo of combos">
+          <app-product-gallery [images]="combo.images"></app-product-gallery>
+
+          <mat-card-title>{{ combo.name }}</mat-card-title>
+
+          <mat-card-content>
+            <p>{{ combo.description }}</p>
+            <ul *ngIf="combo.unidades">
+              <li><strong>Incluye:</strong> {{ combo.unidades }} unidades</li>
+            </ul>
+            <p *ngIf="combo.estimatedTime" class="tiempo">
+              ⏰ Entrega estimada: {{ combo.estimatedTime }}
+            </p>
+            <div *ngIf="combo.colors?.length" class="color-selector">
+              <span class="label">Colores:</span>
+              <span *ngFor="let color of combo.colors" class="color-chip" [style.backgroundColor]="color"></span>
+            </div>
+            <p class="precio">{{ combo.precio | precio }}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="card-actions">
+            <button mat-raised-button color="accent" (click)="addToCart(combo)">
+              Encargar combo
+            </button>
+
+            <div class="cantidad-botones">
+              <button mat-icon-button color="warn" (click)="decrementLocal(combo)">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span>{{ combo.selectedQuantity }}</span>
+              <button mat-icon-button color="primary" (click)="incrementLocal(combo)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </section>
+    </mat-tab>
   </mat-tab-group>
 
-  <!-- Sección final “No encuentras tu Amigurumi?” -->
+
+  <!-- Sección final -->
   <section class="productos-banner">
     <h3>¿No encontrás tu Amigurumi?</h3>
     <p>Si no lo ves en nuestro catálogo, contáctanos para realizar un pedido personalizado.</p>
@@ -131,6 +117,7 @@
   </section>
 </div>
 
+<!-- Modal tabla medidas -->
 <div class="modal-overlay" [class.open]="modalAbierto">
   <div class="modal-content">
     <button class="cerrar" (click)="closeModal()">×</button>
