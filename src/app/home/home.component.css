@@ -68,6 +68,7 @@ h2 {
 
   img {
     max-width: 150px;
+    padding: 10px;
   }
 
   footer {
@@ -83,6 +84,19 @@ img {
   border-radius: 50%;
   object-fit: cover;
   align-self: center;
+}
+
+.lineas-logos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  img {
+    width: 110px;
+    padding: 20px;
+    border-radius: 0;
+    object-fit: contain;
+   }
 }
 
 .elegi-favorito {
@@ -211,4 +225,17 @@ form mat-form-field {
   .testimonial {
       width: 100%;
   }
+
+  .lineas-logos {
+    padding: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    img {
+      width: 100px;
+      display: inline-block;
+      padding: 10px;
+    }
+  }
+
 }

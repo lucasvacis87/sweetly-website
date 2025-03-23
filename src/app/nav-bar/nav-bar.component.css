@@ -237,10 +237,8 @@ i {
 }
 
 .subtotal {
-  font-weight: bold;
   font-size: 0.9rem;
   margin: 0;
-  color: #333;
 }
 
 .cart-footer {
@@ -254,7 +252,16 @@ i {
   position: sticky;
   bottom: 0; /* esto lo pega al fondo visible del contenedor scroll */
   z-index: 10; /* para que esté por encima del contenido que scrollea */
+
+  p {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0;
+    color: #333;
+  }
 }
+
+
 
 
 .cart-footer button {
