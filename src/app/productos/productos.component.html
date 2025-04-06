@@ -28,11 +28,24 @@
           </mat-card-content>
 
           <mat-card-actions class="card-actions">
-            <button mat-raised-button color="accent" (click)="addToCart(product)">
-              Agregar al carrito
-            </button>
+            <ng-container *ngIf="!product.isPersonalized; else personalizadoBtn">
+              <button mat-raised-button color="accent" (click)="addToCart(product)">
+                Agregar al carrito
+              </button>
+            </ng-container>
 
-            <div class="cantidad-botones">
+            <ng-template #personalizadoBtn>
+              <a
+                mat-raised-button
+                color="primary"
+                [href]="getWhatsAppLink(product)"
+                target="_blank"
+              >
+                Pedir por WhatsApp
+              </a>
+            </ng-template>
+
+            <div class="cantidad-botones" *ngIf="!product.isPersonalized">
               <button mat-icon-button color="warn" (click)="decrementLocal(product)">
                 <mat-icon>remove</mat-icon>
               </button>
@@ -42,6 +55,7 @@
               </button>
             </div>
           </mat-card-actions>
+
         </mat-card>
       </section>
     </mat-tab>
@@ -143,17 +157,17 @@
       <tbody>
         <tr>
           <td>Peque</td>
-          <td>10 - 15</td>
-          <td>6 - 10</td>
+          <td>5 - 10</td>
+          <td>3 - 6</td>
         </tr>
         <tr>
           <td>Mediano</td>
-          <td>16 - 25</td>
-          <td>11 - 18</td>
+          <td>11 - 20</td>
+          <td>10 - 18</td>
         </tr>
         <tr>
           <td>Grande</td>
-          <td>26 - 35</td>
+          <td>21 - 35</td>
           <td>19 - 25</td>
         </tr>
       </tbody>

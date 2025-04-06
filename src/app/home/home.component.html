@@ -16,7 +16,11 @@
       </button>
     </div>
 
-    <img src="portada1.png" alt="Amigurumis Sweetly">
+    <section class="portada-section">
+      <div class="portada-wrapper">
+        <img src="portada1.png" alt="Amigurumis Sweetly" class="portada-img" />
+      </div>
+    </section>
   </section>
 
   <section class="lineas">
@@ -40,9 +44,23 @@
       <p>ó hace tu pedido 100% personalizado</p>
     </div>
     <div class="img-favoritos">
-      <img src="favoritos/portada.jpeg" alt="Amigurumi Tacky">
-      <img src="favoritos/messi-1.jpeg" alt="Amigurumi Niña">
-      <img src="favoritos/bubu.jpeg" alt="Amigurumi Baby Yoda">
+      <div class="favorito">
+        <img class="image-linea" src="logos/logo.jpeg" alt="Amigurumi Tacky">
+        <img class="image-favoritos" src="favoritos/portada.jpeg" alt="Amigurumi Tacky">
+      </div>
+      <div class="favorito">
+        <img class="image-linea" src="lineas/afa.png" alt="Amigurumi Tacky">
+        <img class="image-favoritos" src="favoritos/messi.png" alt="Amigurumi Messi">
+      </div>
+      <div class="favorito">
+        <img class="image-linea" src="logos/logo.jpeg" alt="Amigurumi Tacky">
+        <img class="image-favoritos" src="favoritos/bubu.jpeg" alt="Amigurumi Bubu">
+      </div>
+      <div class="favorito">
+        <img class="image-linea" src="lineas/starwars.png" alt="Amigurumi Tacky">
+        <img class="image-favoritos" src="favoritos/baby-yoda.jpeg" alt="Amigurumi Baby Yoda">
+      </div>
+
     </div>
     <button mat-raised-button [routerLink]="['/productos']">Ver todo el catálogo</button>
 

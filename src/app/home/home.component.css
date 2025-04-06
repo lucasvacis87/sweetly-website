@@ -40,11 +40,16 @@ h2 {
   justify-content: center;
   align-items: center;
   padding: 40px;
+  width: -webkit-fill-available;
   text-align: left;
 }
 
 .testimonios-section {
   background-color: var(--tertiary-light-color);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quotes {
@@ -55,6 +60,8 @@ h2 {
   padding: 10px;
   text-align: center;
 }
+
+
 
 .testimonial {
   display: flex;
@@ -80,7 +87,7 @@ h2 {
 img {
   width: 100%;
   height: 100%;
-  max-width: 400px;
+  max-width: 600px;
   border-radius: 50%;
   object-fit: cover;
   align-self: center;
@@ -100,25 +107,81 @@ img {
 }
 
 .elegi-favorito {
+  padding: 4rem 2rem;
+  background-color: #fff5f8;
+  text-align: center;
+}
+
+.text-container-elegi h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.text-container-elegi p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.img-favoritos {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+.favorito {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  max-width: 180px;
+  position: relative;
 }
 
-.elegi-favorito .img-favoritos {
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 50px;
-  flex-wrap: wrap;
-
-  img {
-    box-sizing: border-box;
-    max-height: 400px;
-    border-radius: 20px;
-    padding: 10px;
-  }
+.image-linea {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: -1rem;
+  z-index: 2;
+  position: relative;
+  background-color: #fff;
+  padding: 0.3rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
+.image-favoritos {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+
+.image-favoritos:hover {
+  transform: scale(1.05);
+}
+
+.elegi-favorito button {
+  background-color: #d45a86;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.elegi-favorito button:hover {
+  background-color: #b94c75;
+}
+
 
 .cards {
   display: flex;
@@ -196,6 +259,11 @@ form mat-form-field {
   background-color: #f5f5f5;
 }
 
+.image-lineas {
+  max-width: 150px;
+  object-fit: contain;
+}
+
 /* Mobile */
 @media screen and (max-width: 1024px) {
   h2 {
@@ -218,9 +286,11 @@ form mat-form-field {
   }
 
   .text-container {
-      padding: 10px;
-      text-align: center;
-  }
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+}
 
   .testimonial {
       width: 100%;
