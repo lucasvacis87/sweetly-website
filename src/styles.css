@@ -106,3 +106,22 @@ p {
 .mat-tab-group.sweetly-tabs .mat-ink-bar {
   display: none !important;
 }
+
+#cart-icon.animate {
+  animation: cartPop 0.4s ease-in-out;
+}
+
+@keyframes cartPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.4);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

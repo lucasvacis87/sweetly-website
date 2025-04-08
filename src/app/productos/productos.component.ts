@@ -153,6 +153,17 @@ export class ProductosComponent {
     return this.combos.filter(p => !this.categoriaSeleccionada || p.categoria === this.categoriaSeleccionada);
   }
 
+  infoCompraAbierto = false;
+
+  openInfoCompra() {
+    this.infoCompraAbierto = true;
+  }
+
+  closeInfoCompra() {
+    this.infoCompraAbierto = false;
+  }
+
+
   // tus productos existentes siguen igual...
   products: Product[] = [
     {

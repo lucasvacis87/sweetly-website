@@ -211,6 +211,127 @@ mat-card-content {
   display: none !important;
 }
 
+/* Sección ¿Cómo comprar? adaptada al modal */
+
+.como-comprar {
+  background-color: transparent; /* No fondo dentro del modal */
+  padding: 2rem 1rem;
+  text-align: center;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.como-comprar .container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.como-comprar h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.como-comprar .subtitulo {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.opciones-compra {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-compra {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 230px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s;
+  font-size: 0.95rem;
+}
+
+.card-compra:hover {
+  transform: translateY(-4px);
+}
+
+.card-compra h3 {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.card-compra p {
+  color: #666;
+  margin: 0.4rem 0;
+}
+
+.btn-whatsapp {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebc5a;
+}
+
+.medios-pago {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.medios-pago h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.pago-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.pago-icons li img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.4);
+  transition: filter 0.3s;
+}
+
+.pago-icons li img:hover {
+  filter: none;
+}
+
+.pago-beneficio {
+  font-size: 0.85rem;
+  color: #666;
+}
+
 
 @keyframes scaleIn {
   from {

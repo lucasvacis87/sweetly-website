@@ -3,7 +3,7 @@
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #daf5dc; /* verde pastel */
+  background-color: #daf5dc;
   color: #1c3d1c;
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -15,19 +15,18 @@
   text-align: center;
 }
 
+/* Animación inicial: bounce in */
 .toast.show {
-  animation: toastBounceIn 0.6s ease forwards;
+  animation: toastBounceIn 0.5s ease-out forwards;
   opacity: 1;
-  bottom: 30px;
   pointer-events: auto;
 }
-
 
 @keyframes toastBounceIn {
   0% {
     bottom: -80px;
     opacity: 0;
-    transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(0.9);
   }
   60% {
     bottom: 40px;
@@ -39,13 +38,58 @@
     transform: translateX(-50%) scale(1);
   }
 }
-.toast.hide {
-  animation: toastOut 0.3s ease forwards;
+
+/* Vuelo hacia el carrito */
+.toast.animateToCart {
+  animation: flyToCart 1.2s ease forwards;
+  background-color: #45c55c;
+  color: white;
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes toastOut {
-  to {
+@keyframes flyToCart {
+  0% {
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  80% {
+    bottom: 80%;
+    left: 90%;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    bottom: 100%;
+    left: 96%;
     opacity: 0;
-    bottom: -60px;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+/* Animación del ícono del carrito */
+#cart-icon.animate {
+  animation: cartPop 0.4s ease-in-out;
+}
+
+@keyframes cartPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
   }
 }

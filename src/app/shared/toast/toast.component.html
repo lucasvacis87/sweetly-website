@@ -1,0 +1,8 @@
+<div
+  class="toast"
+  *ngIf="show"
+  [ngClass]="{ show: !animatingToCart, animateToCart: animatingToCart }"
+  (animationend)="onAnimationEnd()"
+>
+  ✅
+</div>
