@@ -14,4 +14,5 @@ export class ToastService {
       this.toast.showToast(message);
     }
   }
+
 }
