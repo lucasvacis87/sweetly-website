@@ -44,28 +44,32 @@ export class ProductosComponent {
     private toastService: ToastService
   ) {}
 
+  ngAfterViewInit(): void {
+    this.route.fragment.subscribe(fragment => {
+      const tab = this.mapFragmentToTab(fragment ?? '');
+      const index = this.getTabIndexByLabel(tab);
+
+      // Esperamos un poco para que el mat-tab-group esté listo
+      setTimeout(() => {
+        if (this.tabGroup && index >= 0) {
+          this.tabGroup.selectedIndex = index;
+
+          const el = document.getElementById(fragment ?? '');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 200);
+    });
+  }
+
   ngOnInit(): void {
     this.products.forEach(p => p.selectedQuantity = 1);
     this.personalized.forEach(p => p.selectedQuantity = 1);
     this.sets.forEach(s => s.selectedQuantity = 1);
     this.combos.forEach(c => c.selectedQuantity = 1);
-
-    this.route.fragment.subscribe(fragment => {
-      const tab = this.mapFragmentToTab(fragment ?? '');
-      const index = this.getTabIndexByLabel(tab);
-      if (this.tabGroup && index >= 0) {
-        this.tabGroup.selectedIndex = index;
-      }
-
-      setTimeout(() => {
-        const el = document.getElementById(fragment ?? '');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 200);
-    });
   }
 
   getTabIndexByLabel(label: string): number {
-    const labels = ['Amigurumis', 'Personalizados', 'Sets Personalizados', 'Combos'];
+    const labels = ['Amigurumis', 'Personalizados', 'Sets', 'Combos'];
     return labels.findIndex(l => l.toLowerCase() === label.toLowerCase());
   }
 
@@ -79,17 +83,17 @@ export class ProductosComponent {
       case 'amigurumis':
         return 'Amigurumis';
       case 'amigurumis personalizados':
+      case 'personalizados':
         return 'Personalizados';
       case 'sets personalizados':
       case 'sets':
-        return 'Sets Personalizados';
+        return 'Sets';
       case 'combos':
         return 'Combos';
       default:
         return 'Amigurumis';
     }
   }
-
 
   openModal() {
     this.modalAbierto = true;
@@ -313,53 +317,31 @@ export class ProductosComponent {
     {
       id: 111,
       name: 'Set Angelitos de Luz',
-      description: 'Incluye un ángel grande central y mini angelitos personalizados a elección. Ideal para bautismos y comuniones.',
+      description: 'Incluye un ángel grande central + mini angelitos personalizados a elección + cada uno con su tarjeta personalizada del evento.',
       precio: 42000,
-      images: ['Sets/bautismo/angelitos.jpeg', 'Sets/bautismo/set-4.png'],
+      images: ['Sets/bautismo/angelitos.jpeg'],
       unidades: 15
     },
     {
       id: 112,
       name: 'Set Animalitos Baby Shower',
-      description: 'Pack ideal para baby showers. Incluye figura grande + varios peques a elección.',
+      description: 'Pack ideal para baby showers. Incluye figura grande + varios peques a elección + cada uno con su tarjeta personalizada del evento.',
       precio: 38000,
-      images: ['Sets/conejos/set-6.jpeg', 'Sets/conejos/conejito.jpeg'],
+      images: ['Sets/conejos/conejitos-1.png', 'Sets/conejos/conejitos.png'],
       unidades: 15
     },
-    {
-      id: 113,
-      name: 'Grand Set Premium',
-      description: 'El set más completo. Figuras grandes, únicas, hechas a medida según tu evento o historia.',
-      precio: 62000,
-      images: ['Sets/set-1.png', 'Sets/set-2.png', 'Sets/set-3.png' ],
-      unidades: 30
-    }
+
   ];
 
   combos: Set[] = [
     {
       id: 114,
-      name: 'Combo Angelitos',
-      description: 'Mini pack ideal para regalos o souvenir. Incluye 4 angelitos + 1 figura grande.',
-      precio: 36000,
+      name: 'Proximamente Combo de Amigurumis',
+      description: 'Combo de amigurumis a elección. Incluye 1 figura grande + 2 figuras pequeñas',
+      precio: 0,
       images: ['Sets/set-3.png'],
       unidades: 15
     },
-    {
-      id: 115,
-      name: 'Combo Conejitos',
-      description: 'Tres conejitos tiernos en tonos pastel listos para regalar. Hechos 100% a mano.',
-      precio: 28000,
-      images: ['Sets/set-2.png'],
-      unidades: 15
-    },
-    {
-      id: 116,
-      name: 'Combo Gran Fiesta',
-      description: 'Combo especial para decorar mesas dulces, eventos o regalos múltiples.',
-      precio: 49000,
-      images: ['Sets/set-1.png' ],
-      unidades: 6
-    }
+
   ];
 }

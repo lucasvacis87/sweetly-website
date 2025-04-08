@@ -10,8 +10,31 @@
     </div>
   </section>
 
+  <section class="tiempo-entrega">
+    <div class="container-entrega">
+      <h3><i class="fa-solid fa-truck-fast"></i> Tiempo de entrega</h3>
+
+      <div class="entrega-opcion">
+        <i class="fa-solid fa-box"></i>
+        <div>
+          <p><strong>Amigurumis del catálogo</strong></p>
+          <p>Entrega rápida: <strong>5 días hábiles</strong>.</p>
+        </div>
+      </div>
+
+      <div class="entrega-opcion">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <div>
+          <p><strong>Personalizados y sets a medida</strong></p>
+          <p>Entrega especial: <strong>10 días hábiles</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Tabs -->
   <mat-tab-group #tabGroup class="sweetly-tabs">
+
     <!-- Amigurumis -->
     <mat-tab label="Amigurumis">
       <section class="productos-grid">
@@ -42,13 +65,13 @@
 
 
     <!-- Sets Personalizados -->
-    <mat-tab label="Sets Personalizados">
+    <mat-tab label="Sets">
       <section class="productos-grid">
         <app-product-card
           *ngFor="let set of sets"
           [item]="set"
           type="set"
-          (openModal)="openModal()"
+          (openCustom)="openCustomOrder($event)"
           (openCustomOrder)="openCustomOrder($event)"
         ></app-product-card>
       </section>
@@ -61,10 +84,6 @@
           *ngFor="let combo of combos"
           [item]="combo"
           type="combo"
-          (addToCart)="addToCart($event)"
-          (increment)="incrementLocal($event)"
-          (decrement)="decrementLocal($event)"
-          (openModal)="openModal()"
         ></app-product-card>
       </section>
     </mat-tab>
