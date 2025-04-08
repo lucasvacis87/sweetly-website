@@ -1,0 +1,57 @@
+<mat-card class="product-card">
+  <app-product-gallery [images]="item.images"></app-product-gallery>
+
+  <mat-card-title>{{ item.name }}</mat-card-title>
+
+  <mat-card-content>
+    <p>{{ item.description }}</p>
+
+    <p *ngIf="item.size"><strong>Tamaño:</strong> {{ item.size }}</p>
+
+    <ul *ngIf="type === 'combo' && item.unidades">
+      <li><strong>Incluye:</strong> {{ item.unidades }} unidades</li>
+    </ul>
+
+    <p *ngIf="type === 'set'"><strong>Incluye:</strong> aprox. {{ item.unidades }} amigurumis</p>
+
+    <div *ngIf="item.estimatedTime" class="tiempo">
+      ⏰ Entrega estimada: {{ item.estimatedTime }}
+    </div>
+
+    <div *ngIf="item.colors?.length" class="color-selector">
+      <span class="label">Colores:</span>
+      <span *ngFor="let color of item.colors" class="color-chip" [style.backgroundColor]="color"></span>
+    </div>
+
+    <p class="precio">{{ item.precio | precio }}</p>
+
+    <a class="btn-medidas-producto" (click)="openModal.emit()">
+      <i class="fa-solid fa-ruler-combined"></i> Tabla medidas
+    </a>
+  </mat-card-content>
+
+  <!-- ✅ Aquí colocás el bloque de botones dinámico -->
+  <mat-card-actions class="card-actions">
+    <ng-container *ngIf="type === 'normal' || type === 'combo'; else altAction">
+      <button mat-raised-button color="accent" (click)="onAddToCart()">
+        {{ type === 'combo' ? 'Encargar combo' : 'Agregar al carrito' }}
+      </button>
+    </ng-container>
+
+    <ng-template #altAction>
+      <button *ngIf="type === 'set' || type === 'custom'" mat-raised-button color="primary" (click)="openCustom.emit(item)">
+        {{ type === 'set' ? 'Quiero este Set' : 'Encargar Amigurumi' }}
+      </button>
+    </ng-template>
+
+    <div *ngIf="type === 'normal' || type === 'combo'" class="cantidad-botones">
+      <button mat-icon-button color="warn" (click)="decrement.emit(item)">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <span class="cantidad-numero">{{ item.selectedQuantity }}</span>
+      <button mat-icon-button color="primary" (click)="increment.emit(item)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

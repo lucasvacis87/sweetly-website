@@ -1,121 +1,95 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { ProductGalleryComponent } from '../product-gallery/product-gallery.component';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { CartService } from '../services/cart.service';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { CustomSetDialogComponent } from '../custom-set-dialog/custom-set-dialog.component';
-import { PrecioPipe } from "../shared/precio.pipe";
-import { AppComponent } from '../app.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+
 import { ToastService } from '../shared/toast.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CartService } from '../services/cart.service';
 
+import { CustomSetDialogComponent } from '../custom-set-dialog/custom-set-dialog.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { Product, Set } from '../shared/models/product.model';
+import { MatButtonModule } from '@angular/material/button';
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  precio: number;
-  images: string[];
-  selectedQuantity?: number;
-  size: string;
-  isPersonalized?: boolean;
-}
-
-interface Set {
-  id: number;
-  name: string;
-  description: string;
-  precio: number;
-  images: string[];
-  unidades: number;
-  selectedQuantity?: number;
-  estimatedTime?: string;
-  colors?: string[];
-}
 
 @Component({
   selector: 'app-productos',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule,
     RouterModule,
-    ProductGalleryComponent,
     MatTabsModule,
-    MatIconModule,
-    MatTabGroup,
-    PrecioPipe
-],
+    MatSelectModule,
+    FormsModule,
+    ProductCardComponent,
+    MatButtonModule
+  ],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent {
-
+  modalAbierto = false;
+  activeTab = 'amigurumis';
+  categoriaSeleccionada = '';
+  categorias = ['Disney', 'Pokémon', 'Harry Potter', 'Animales'];
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
 
-  constructor(private cartService: CartService, private route: ActivatedRoute, private dialog: MatDialog, private toastService: ToastService) {}
-
-  modalAbierto = false;
+  constructor(
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    // Inicializamos la cantidad seleccionada en 1 para cada producto y set
     this.products.forEach(p => p.selectedQuantity = 1);
+    this.personalized.forEach(p => p.selectedQuantity = 1);
     this.sets.forEach(s => s.selectedQuantity = 1);
     this.combos.forEach(c => c.selectedQuantity = 1);
 
-
     this.route.fragment.subscribe(fragment => {
-      if (fragment === 'Sets Personalizados') {
-        this.tabGroup.selectedIndex = 1;
-      } else if (fragment === 'Combos') {
-        this.tabGroup.selectedIndex = 2;
-      } else {
-        this.tabGroup.selectedIndex = 0;
+      const tab = this.mapFragmentToTab(fragment ?? '');
+      const index = this.getTabIndexByLabel(tab);
+      if (this.tabGroup && index >= 0) {
+        this.tabGroup.selectedIndex = index;
       }
 
-      // Espera un poco y hace scroll al id si existe
       setTimeout(() => {
-        const el = document.getElementById(fragment || '');
+        const el = document.getElementById(fragment ?? '');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }, 200);
     });
   }
 
-  // Botones +/–: modifican la cantidad local (solo en memoria, sin tocar el carrito)
-  incrementLocal(item: Product | Set): void {
-    if (item.selectedQuantity !== undefined) {
-      item.selectedQuantity++;
+  getTabIndexByLabel(label: string): number {
+    const labels = ['Amigurumis', 'Personalizados', 'Sets Personalizados', 'Combos'];
+    return labels.findIndex(l => l.toLowerCase() === label.toLowerCase());
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+    this.categoriaSeleccionada = '';
+  }
+
+  mapFragmentToTab(fragment: string): string {
+    switch (fragment.toLowerCase()) {
+      case 'amigurumis':
+        return 'Amigurumis';
+      case 'amigurumis personalizados':
+        return 'Personalizados';
+      case 'sets personalizados':
+      case 'sets':
+        return 'Sets Personalizados';
+      case 'combos':
+        return 'Combos';
+      default:
+        return 'Amigurumis';
     }
   }
 
-  decrementLocal(item: Product | Set): void {
-    if (item.selectedQuantity && item.selectedQuantity > 1) {
-      item.selectedQuantity--;
-    }
-  }
-
-  getWhatsAppLink(product: Product): string {
-    const mensaje = `Hola! Me interesa personalizar un amigurumi: ${product.name}`;
-    const telefono = '57206739'; // Reemplaza con el número de teléfono real
-    return `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-  }
-
-  // Al hacer click en "Agregar al carrito"
-  // Sumamos la cantidad local al carrito global
-  addToCart(item: Product | Set): void {
-    if (!item.selectedQuantity) {
-      item.selectedQuantity = 1; // fallback
-    }
-    // Llamamos al servicio para AGREGAR o ACTUALIZAR la cantidad de este producto en el carrito
-    this.cartService.addOrUpdateItem(item.id, item.name, item.precio, item.selectedQuantity, item.images[0]);
-    this.toastService.show('Producto agregado al carrito');
-  }
 
   openModal() {
     this.modalAbierto = true;
@@ -125,7 +99,7 @@ export class ProductosComponent {
     this.modalAbierto = false;
   }
 
-  openCustomOrder(set: any) {
+  openCustomOrder(set: Set) {
     this.dialog.open(CustomSetDialogComponent, {
       data: { name: set.name },
       width: '100%',
@@ -133,6 +107,53 @@ export class ProductosComponent {
     });
   }
 
+  addToCart(item: Product | Set): void {
+    if (!item.selectedQuantity) item.selectedQuantity = 1;
+    this.cartService.addOrUpdateItem(
+      item.id,
+      item.name,
+      item.precio,
+      item.selectedQuantity,
+      item.images[0]
+    );
+    this.toastService.show('Producto agregado al carrito');
+  }
+
+  incrementLocal(item: Product | Set) {
+    if (item.selectedQuantity !== undefined) {
+      item.selectedQuantity++;
+    }
+  }
+
+  decrementLocal(item: Product | Set) {
+    if (item.selectedQuantity && item.selectedQuantity > 1) {
+      item.selectedQuantity--;
+    }
+  }
+
+  getWhatsAppLink(product: Product): string {
+    const mensaje = `Hola! Me interesa personalizar un amigurumi: ${product.name}`;
+    const telefono = '5491157206739';
+    return `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+  }
+
+  filteredProducts() {
+    return this.products.filter(p => !this.categoriaSeleccionada || p.categoria === this.categoriaSeleccionada);
+  }
+
+  filteredPersonalizados() {
+    return this.personalized.filter(p => !this.categoriaSeleccionada || p.categoria === this.categoriaSeleccionada);
+  }
+
+  filteredSets() {
+    return this.sets.filter(p => !this.categoriaSeleccionada || p.categoria === this.categoriaSeleccionada);
+  }
+
+  filteredCombos() {
+    return this.combos.filter(p => !this.categoriaSeleccionada || p.categoria === this.categoriaSeleccionada);
+  }
+
+  // tus productos existentes siguen igual...
   products: Product[] = [
     {
       id: 1,
@@ -206,6 +227,10 @@ export class ProductosComponent {
       images: ['muñeca/muñeca-1.jpeg','muñeca/muñeca-2.jpeg','muñeca/portada.jpeg'],
       size: 'Mediano'
     },
+
+  ];
+
+  personalized: Product[] = [
     {
       id: 81,
       name: 'Encarga tu Amigurumi Potter',
@@ -268,7 +293,8 @@ export class ProductosComponent {
       images: ['custom/BTS.jpg'],
       size: 'Mediano',
       isPersonalized: true
-    }
+    },
+
   ];
 
 
@@ -325,5 +351,4 @@ export class ProductosComponent {
       unidades: 6
     }
   ];
-
 }

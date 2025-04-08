@@ -4,140 +4,79 @@
     <div class="text-container">
       <h1>Catálogo de Amigurumis</h1>
       <p>Descubrí nuestro catálogo de amigurumis y sets personalizados.</p>
-      <button mat-raised-button class="btn-medidas" (click)="openModal()">Ver tabla de medidas</button>
+      <button mat-button class="btn-medidas" (click)="openModal()">
+        Ver tabla de medidas
+      </button>
     </div>
   </section>
 
-  <mat-tab-group  #tabGroup>
-    <!-- TAB: Productos -->
-    <mat-tab label="Productos">
+  <!-- Tabs -->
+  <mat-tab-group #tabGroup class="sweetly-tabs">
+    <!-- Amigurumis -->
+    <mat-tab label="Amigurumis">
       <section class="productos-grid">
-        <mat-card class="product-card" *ngFor="let product of products">
-          <app-product-gallery [images]="product.images"></app-product-gallery>
-
-          <mat-card-title>{{ product.name }}</mat-card-title>
-
-          <mat-card-content>
-            <p>{{ product.description }}</p>
-            <p><strong>Tamaño:</strong> {{ product.size }}</p>
-            <p class="precio">{{ product.precio | precio }}</p>
-            <a class="btn-medidas-producto" (click)="openModal()">
-              <i class="fa-solid fa-ruler-combined"></i> Tabla medidas
-            </a>
-
-          </mat-card-content>
-
-          <mat-card-actions class="card-actions">
-            <ng-container *ngIf="!product.isPersonalized; else personalizadoBtn">
-              <button mat-raised-button color="accent" (click)="addToCart(product)">
-                Agregar al carrito
-              </button>
-            </ng-container>
-
-            <ng-template #personalizadoBtn>
-              <a
-                mat-raised-button
-                color="primary"
-                [href]="getWhatsAppLink(product)"
-                target="_blank"
-              >
-                Pedir por WhatsApp
-              </a>
-            </ng-template>
-
-            <div class="cantidad-botones" *ngIf="!product.isPersonalized">
-              <button mat-icon-button color="warn" (click)="decrementLocal(product)">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <span>{{ product.selectedQuantity }}</span>
-              <button mat-icon-button color="primary" (click)="incrementLocal(product)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </mat-card-actions>
-
-        </mat-card>
+        <app-product-card
+          *ngFor="let product of products"
+          [item]="product"
+          type="normal"
+          (addToCart)="addToCart($event)"
+          (increment)="incrementLocal($event)"
+          (decrement)="decrementLocal($event)"
+          (openModal)="openModal()"
+        ></app-product-card>
       </section>
     </mat-tab>
 
-    <!-- TAB: Sets Personalizados -->
+    <!-- Personalizados -->
+    <mat-tab label="Personalizados">
+      <section class="productos-grid">
+        <app-product-card
+          *ngFor="let custom of personalized"
+          [item]="custom"
+          type="custom"
+          (openCustom)="openCustomOrder($event)"
+          (verMedidas)="openModal()"
+        ></app-product-card>
+      </section>
+    </mat-tab>
+
+
+    <!-- Sets Personalizados -->
     <mat-tab label="Sets Personalizados">
       <section class="productos-grid">
-        <mat-card class="product-card" *ngFor="let set of sets">
-          <app-product-gallery [images]="set.images"></app-product-gallery>
-
-          <mat-card-title>{{ set.name }}</mat-card-title>
-
-          <mat-card-content>
-            <p>{{ set.description }}</p>
-            <p><strong>Incluye:</strong> aprox. {{ set.unidades }} amigurumis</p>
-            <p class="precio">Desde {{ set.precio | precio }}</p>
-            <a class="btn-medidas-producto" (click)="openModal()">
-              <i class="fa-solid fa-ruler-combined"></i> Tabla medidas
-            </a>
-          </mat-card-content>
-
-          <mat-card-actions class="card-actions">
-            <button mat-raised-button color="primary" (click)="openCustomOrder(set)">
-              Quiero este Set
-            </button>
-          </mat-card-actions>
-        </mat-card>
+        <app-product-card
+          *ngFor="let set of sets"
+          [item]="set"
+          type="set"
+          (openModal)="openModal()"
+          (openCustomOrder)="openCustomOrder($event)"
+        ></app-product-card>
       </section>
     </mat-tab>
 
-    <!-- TAB: Combos -->
+    <!-- Combos -->
     <mat-tab label="Combos">
       <section class="productos-grid">
-        <mat-card class="product-card" *ngFor="let combo of combos">
-          <app-product-gallery [images]="combo.images"></app-product-gallery>
-
-          <mat-card-title>{{ combo.name }}</mat-card-title>
-
-          <mat-card-content>
-            <p>{{ combo.description }}</p>
-            <ul *ngIf="combo.unidades">
-              <li><strong>Incluye:</strong> {{ combo.unidades }} unidades</li>
-            </ul>
-            <p *ngIf="combo.estimatedTime" class="tiempo">
-              ⏰ Entrega estimada: {{ combo.estimatedTime }}
-            </p>
-            <div *ngIf="combo.colors?.length" class="color-selector">
-              <span class="label">Colores:</span>
-              <span *ngFor="let color of combo.colors" class="color-chip" [style.backgroundColor]="color"></span>
-            </div>
-            <p class="precio">{{ combo.precio | precio }}</p>
-            <a class="btn-medidas-producto" (click)="openModal()">
-              <i class="fa-solid fa-ruler-combined"></i> Tabla medidas
-            </a>
-          </mat-card-content>
-
-          <mat-card-actions class="card-actions">
-            <button mat-raised-button color="accent" (click)="addToCart(combo)">
-              Encargar combo
-            </button>
-
-            <div class="cantidad-botones">
-              <button mat-icon-button color="warn" (click)="decrementLocal(combo)">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <span>{{ combo.selectedQuantity }}</span>
-              <button mat-icon-button color="primary" (click)="incrementLocal(combo)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </mat-card-actions>
-        </mat-card>
+        <app-product-card
+          *ngFor="let combo of combos"
+          [item]="combo"
+          type="combo"
+          (addToCart)="addToCart($event)"
+          (increment)="incrementLocal($event)"
+          (decrement)="decrementLocal($event)"
+          (openModal)="openModal()"
+        ></app-product-card>
       </section>
     </mat-tab>
   </mat-tab-group>
-
 
   <!-- Sección final -->
   <section class="productos-banner">
     <h3>¿No encontrás tu Amigurumi?</h3>
     <p>Si no lo ves en nuestro catálogo, contáctanos para realizar un pedido personalizado.</p>
-    <button mat-raised-button color="primary" [routerLink]="['/contacto']">Contactar</button>
+    <button mat-raised-button color="primary" [routerLink]="['/contacto']">
+      Contactar
+    </button>
   </section>
 </div>
 

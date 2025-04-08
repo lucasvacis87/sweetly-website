@@ -169,6 +169,49 @@ mat-card-content {
   cursor: pointer;
 }
 
+::ng-deep .mat-tab-group.sweetly-tabs .mat-tab-header {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+::ng-deep .mat-tab-group.sweetly-tabs .mat-tab-label-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+::ng-deep .mat-tab-group.sweetly-tabs .mat-tab-list {
+  background-color: #ffeef3;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  display: inline-flex;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: visible !important;
+}
+
+::ng-deep .mat-tab-group.sweetly-tabs .mat-tab-label {
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  color: #d46a8a;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .mat-tab-group.sweetly-tabs .mat-tab-label.mat-tab-label-active {
+  background-color: #ffdce6;
+  color: #b0345f;
+  box-shadow: 0 0 0 2px #ffdce6;
+}
+
+::ng-deep .mat-tab-group.sweetly-tabs .mat-ink-bar {
+  display: none !important;
+}
+
+
 @keyframes scaleIn {
   from {
     opacity: 0;
