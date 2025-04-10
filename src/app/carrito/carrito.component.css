@@ -134,4 +134,9 @@ body {
   .item-info {
     width: 100%;
   }
+
+  mat-icon {
+    color: black;
+  }
+
 }

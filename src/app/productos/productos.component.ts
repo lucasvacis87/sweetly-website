@@ -170,28 +170,13 @@ export class ProductosComponent {
 
   // tus productos existentes siguen igual...
   products: Product[] = [
+
     {
       id: 1,
       name: 'Messi Campeón',
       description: 'Amigurumi exclusivo del 10 más grande. Con su cinta, medalla y todo el aguante argentino.',
-      precio: 18500,
-      images: ['messi/messi.png',  'messi/messi.jpeg'],
-      size: 'Mediano'
-    },
-    {
-      id: 3,
-      name: 'Maestro Yodita',
-      description: 'El amigurumi que concentra toda la ternura y sabiduría galáctica. Perfecto para regalar.',
-      precio: 15500,
-      images: ['babby-yoda/yodi.jpg', 'babby-yoda/yoda-1.jpeg', 'babby-yoda/favorito-2.jpeg'],
-      size: 'Mediano'
-    },
-    {
-      id: 4,
-      name: 'Conejito K-Pop',
-      description: 'Inspirado en la ternura y el estilo coreano. Ideal para fans de BTS y cultura asiática.',
-      precio: 11500,
-      images: ['BTS/bts-4.png','BTS/bts-1.jpeg', 'BTS/bts-3.jpeg'],
+      precio: 25500,
+      images: ['messi/messi.png', 'messi/messi.jpeg'],
       size: 'Mediano'
     },
     {
@@ -203,20 +188,60 @@ export class ProductosComponent {
       size: 'Mediano'
     },
     {
+      id: 533,
+      name: 'Charmander',
+      description: 'El Pokémon inicial de fuego. Ideal para fans de la saga y amantes de los Pokémon.',
+      precio: 30000,
+      images: ['charmander/image1.jpg', 'charmander/image (2).jpg', 'charmander/image.jpg'],
+      size: 'Mediano'
+    },
+    {
+      id: 532,
+      name: 'Harry Potter',
+      description: 'El niño que vivió. Amigurumi inspirado en el personaje más querido de la saga.',
+      precio: 18500,
+      images: ['harry/harry3.jpg', 'harry/harry-1.jpeg'],
+      size: 'Mediano'
+    },
+    {
+      id: 3,
+      name: 'Maestro Yodita',
+      description: 'El amigurumi que concentra toda la ternura y sabiduría galáctica. Perfecto para regalar.',
+      precio: 30000,
+      images: ['babby-yoda/yodi.jpg', 'babby-yoda/yoda-1.jpeg', 'babby-yoda/favorito-2.jpeg'],
+      size: 'Mediano'
+    },
+    {
+      id: 4,
+      name: 'Conejito K-Pop',
+      description: 'Inspirado en la ternura y el estilo coreano. Ideal para fans de BTS y cultura asiática.',
+      precio: 11500,
+      images: ['BTS/bts-4.png', 'BTS/bts-1.jpeg', 'BTS/bts-3.jpeg'],
+      size: 'Mediano'
+    },
+    {
       id: 52,
       name: 'Hedwig la Lechuza',
       description: 'La fiel compañera de Harry Potter. Ideal para fans de la saga y amantes de la magia.',
       precio: 15500,
-      images: ['lechuza/hedwig-2.png' , 'lechuza/hedwig-3.png' , 'lechuza/hedwig-1.png'],
+      images: ['lechuza/hedwig-2.png', 'lechuza/hedwig-3.png'],
       size: 'Mediano'
     },
     {
-      id: 6,
-      name: 'Conejito Pastel',
-      description: 'Elegí tu color preferido y recibí este conejito encantador, ideal para decorar o regalar.',
-      precio: 9800,
-      images: ['conejito/conejito-1.jpeg', 'conejito/conejito-2.jpeg'],
-      size: 'Pequeño'
+      id: 9,
+      name: 'Stacy de Primavera',
+      description: 'Una muñeca coqueta con detalles florales. Hecha con hilos premium y muchos mimos.',
+      precio: 18500,
+      images: ['muñeca/muñeca-1.jpeg', 'muñeca/muñeca-2.jpeg', 'muñeca/portada.jpeg'],
+      size: 'Mediano'
+    },
+    {
+      id: 8,
+      name: 'Vaquita Milky',
+      description: 'Simpática, divertida y hecha a mano con amor. Tu vaquita favorita para decorar o abrazar.',
+      precio: 14000,
+      images: ['vaquita/vaquita-1.jpeg', 'vaquita/vaca-2.jpeg', 'vaquita/vaquita-3.jpeg', 'vaquita/vaca-4.jpeg'],
+      size: 'Mediano'
     },
     {
       id: 7,
@@ -227,21 +252,13 @@ export class ProductosComponent {
       size: 'Pequeño'
     },
     {
-      id: 8,
-      name: 'Vaquita Milky',
-      description: 'Simpática, divertida y hecha a mano con amor. Tu vaquita favorita para decorar o abrazar.',
-      precio: 14000,
-      images: ['vaquita/vaquita-1.jpeg','vaquita/vaca-2.jpeg','vaquita/vaquita-3.jpeg','vaquita/vaca-4.jpeg'],
-      size: 'Mediano'
-    },
-    {
-      id: 9,
-      name: 'Stacy de Primavera',
-      description: 'Una muñeca coqueta con detalles florales. Hecha con hilos premium y muchos mimos.',
-      precio: 18500,
-      images: ['muñeca/muñeca-1.jpeg','muñeca/muñeca-2.jpeg','muñeca/portada.jpeg'],
-      size: 'Mediano'
-    },
+      id: 6,
+      name: 'Conejito Pastel',
+      description: 'Elegí tu color preferido y recibí este conejito encantador, ideal para decorar o regalar.',
+      precio: 9800,
+      images: ['conejito/conejito-1.jpeg', 'conejito/conejito-2.jpeg'],
+      size: 'Pequeño'
+    }
 
   ];
 

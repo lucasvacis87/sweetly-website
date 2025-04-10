@@ -1,5 +1,5 @@
 <div class="oferta">
-  <a href="/productos">
+  <a [routerLink]="['/productos']">
     Aprovecha nuestra oferta de lanzamiento: ¡10% de descuento en tu primer pedido!
   </a>
 </div>
@@ -47,27 +47,23 @@
           <h3>🛒 Productos del Catálogo</h3>
           <p>Agregalos al carrito y pagalos online. Los recibís en 5 días hábiles.</p>
           <p><strong>¡Listo para encargar al instante!</strong></p>
+          <a mat-button color="primary" [routerLink]="['/productos']" fragment="combos">Ver Amigurumis</a>
         </div>
 
         <div class="card-compra">
           <h3>🎨 Amigurumis Personalizados</h3>
           <p>Elegí la temática y contactanos por WhatsApp.</p>
           <p><strong>Hechos a tu medida, entrega en 5 días.</strong></p>
-          <a href="https://wa.me/+5491157206739" target="_blank" class="btn-whatsapp">Encargar por WhatsApp</a>
+          <a mat-button color="primary" [routerLink]="['/productos#personalizados']" fragment="combos">Personalizados</a>
         </div>
 
         <div class="card-compra">
           <h3>🎁 Sets Personalizados</h3>
           <p>Ideal para bautismos, baby showers y más. Hacemos sets a medida con 10 días de entrega.</p>
           <p><strong>Se encarga por WhatsApp con asesoramiento personalizado.</strong></p>
-          <a href="https://wa.me/+5491157206739" target="_blank" class="btn-whatsapp">Consultar ahora</a>
+          <a mat-button color="primary" [routerLink]="['/productos#sets']" fragment="combos">Sets</a>
         </div>
 
-        <div class="card-compra">
-          <h3>✨ Combos Especiales</h3>
-          <p>Sets listos para regalar. Compralos directo desde la web y recibilos en 10 días.</p>
-          <p><strong>¡Disponibles Proximamente!</strong></p>
-        </div>
       </div>
 
       <hr>
